@@ -20,6 +20,8 @@ local plugins = {
 
     { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons", opt = true },
 
+    { "xiyaowong/virtcolumn.nvim" },
+
     { "antoinemadec/FixCursorHold.nvim" },
 
     -- treesitter plugins
@@ -41,7 +43,13 @@ local plugins = {
 
     { "p00f/nvim-ts-rainbow", after = "nvim-treesitter" },
 
-    { "andymass/vim-matchup", after = "nvim-treesitter" },
+    { "andymass/vim-matchup",
+        after = "nvim-treesitter",
+        event = "CursorMoved",
+        config = function()
+            vim.g.matchup_matchparen_offscreen = { method = "popup" }
+        end,
+    },
 
     -- lsp and auto-completion plugins
 
@@ -91,7 +99,7 @@ local plugins = {
 
     { "nvim-telescope/telescope-file-browser.nvim" },
 
-    { "nvim-telescope/telescope-project.nvim" },
+    { "nvim-telescope/telescope-project.nvim", event = "BufWinEnter" },
 
     -- navigation plugins
 
