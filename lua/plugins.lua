@@ -164,6 +164,10 @@ local plugins = {
     -- smooth scrolling
 
     { "karb94/neoscroll.nvim",
+        module = "neoscroll",
+        -- these are the default keys used by neoscroll
+        keys = { '<C-u>', '<C-d>', '<C-b>', '<C-f>',
+            '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
         config = function()
             require("neoscroll").setup({})
         end,
