@@ -49,9 +49,9 @@ local plugins = {
 
     { "neovim/nvim-lspconfig",
         after = { "nvim-lsp-installer" },
-        requires = { 
-            { "lukas-reineke/lsp-format.nvim" }, 
-            { "ray-x/lsp_signature.nvim"} 
+        requires = {
+            { "lukas-reineke/lsp-format.nvim" },
+            { "ray-x/lsp_signature.nvim" }
         },
         config = function()
             require("configs.lsp")
@@ -118,6 +118,23 @@ local plugins = {
                 auto_hide = true
             })
         end,
+    },
+
+
+    { 'rmagatti/goto-preview',
+        config = function()
+            require('goto-preview').setup({
+                default_mappings = true
+            })
+        end
+    },
+
+    { "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+        cmd = "TroubleToggle",
+        config = function()
+            require("trouble").setup({})
+        end
     },
 
     -- terminal popups
