@@ -61,3 +61,34 @@ wk.register({
     ["<C-t>"] = { "Toggle Terminal" },
     ["<C-g>"] = { "<cmd>lua ToggleLazygit()<cr>", "Toggle Lazygit" },
 })
+
+-- barbar tab manager keybinds
+wk.register({
+    ["<C-p>"] = { "<cmd>BufferPick<cr>", "Magic Buffer-picking Mode" },
+
+    ["<A-,>"] = { "<cmd>BufferPrevious<cr>", "Move to Previous Buffer" },
+    ["<A-.>"] = { "<cmd>BufferNext<cr>", "Move to Next Buffer" },
+
+    ["<A-<>"] = { "<cmd>BufferMovePrevious<cr>", "Re-order to Previous" },
+    ["<A->>"] = { "<cmd>BufferMoveNext<cr>", "Re-order to Next" },
+
+    ["<A-1>"] = { "<cmd>BufferGoto 1<cr>", "Jump to Buffer 1" },
+    ["<A-2>"] = { "<cmd>BufferGoto 2<cr>", "Jump to Buffer 2" },
+    ["<A-3>"] = { "<cmd>BufferGoto 3<cr>", "Jump to Buffer 3" },
+    ["<A-4>"] = { "<cmd>BufferGoto 4<cr>", "Jump to Buffer 4" },
+    ["<A-5>"] = { "<cmd>BufferGoto 5<cr>", "Jump to Buffer 5" },
+    ["<A-6>"] = { "<cmd>BufferGoto 6<cr>", "Jump to Buffer 6" },
+    ["<A-7>"] = { "<cmd>BufferGoto 7<cr>", "Jump to Buffer 7" },
+    ["<A-8>"] = { "<cmd>BufferGoto 8<cr>", "Jump to Buffer 8" },
+    ["<A-9>"] = { "<cmd>BufferGoto 9<cr>", "Jump to Buffer 9" },
+    ["<A-0>"] = { "<cmd>BufferLast<cr>", "Jump to Last Buffer" },
+
+    ["<A-p>"] = { "<cmd>BufferPin<cr>", "Pin Buffer" },
+    ["<A-c>"] = { "<cmd>BufferClose<cr>", "Close Buffer" },
+
+    ["<leader>b"] = { "+BufferOrder" },
+    ["<leader>bb"] = { "<cmd>BufferOrderByBufferNumber<cr>", "Order By Buffer Number" },
+    ["<leader>bd"] = { "<cmd>BufferOrderByDirectory<cr>", "Order By Directory" },
+    ["<leader>bl"] = { "<cmd>BufferOrderByLanguage<cr>", "Order By Language" },
+    ["<leader>bw"] = { "<cmd>BufferOrderByWindowNumber<cr>", "Order By Window Number" },
+})
