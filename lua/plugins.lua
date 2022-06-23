@@ -51,6 +51,12 @@ local plugins = {
         end,
     },
 
+    { "lewis6991/gitsigns.nvim",
+        config = function()
+            require("gitsigns").setup()
+        end,
+    },
+
     -- lsp and auto-completion plugins
 
     { "williamboman/nvim-lsp-installer" },
@@ -63,6 +69,12 @@ local plugins = {
         },
         config = function()
             require("configs.lsp")
+        end,
+    },
+
+    { "j-hui/fidget.nvim",
+        config = function()
+            require("fidget").setup({})
         end,
     },
 
