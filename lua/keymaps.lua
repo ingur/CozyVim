@@ -86,7 +86,7 @@ wk.register({
     ["<A-p>"] = { "<cmd>BufferPin<cr>", "Pin Buffer" },
     ["<A-c>"] = { "<cmd>BufferClose<cr>", "Close Buffer" },
 
-    ["<leader>b"] = { "+BufferOrder" },
+    ["<leader>b"] = { "+TabsOrder" },
     ["<leader>bb"] = { "<cmd>BufferOrderByBufferNumber<cr>", "Order By Buffer Number" },
     ["<leader>bd"] = { "<cmd>BufferOrderByDirectory<cr>", "Order By Directory" },
     ["<leader>bl"] = { "<cmd>BufferOrderByLanguage<cr>", "Order By Language" },
