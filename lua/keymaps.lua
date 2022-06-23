@@ -2,18 +2,23 @@ local wk = require("which-key")
 
 -- basic keybindings
 wk.register({
-    ["<C-s>"] = { "<cmd>w<cr>", "Save current file" },
+    ["<C-s>"] = { "<cmd>w<cr>", "Save Current File" },
     ["<C-c>"] = { "<cmd>q<cr>", "Quit" }
 })
 
 wk.register({
-    ["<C-s>"] = { "<esc><cmd>w<cr>", "Save current file", mode = 'i' },
+    ["<C-s>"] = { "<esc><cmd>w<cr>", "Save Current File", mode = 'i' },
     ["<C-c>"] = { "<esc><cmd>q<cr>", "Quit", mode = 'i' }
 })
 
 wk.register({
-    ["<C-s>"] = { "<esc><cmd>w<cr>", "Save current file", mode = 'v' },
+    ["<C-s>"] = { "<esc><cmd>w<cr>", "Save Current File", mode = 'v' },
     ["<C-c>"] = { "<esc><cmd>q<cr>", "Quit", mode = 'v' }
+})
+
+-- lsp keybindings
+wk.register({
+    ["<C-k>"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show Lsp Hover" },
 })
 
 -- telescope keybindings
