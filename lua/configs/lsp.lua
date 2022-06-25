@@ -8,7 +8,12 @@ lsp_installer.setup({
     automatic_installation = true
 })
 
-lspsignature.setup({})
+lspsignature.setup({
+    floating_window = false,
+    toggle_key = "<A-x>",
+    hint_prefix = "🦥 ",
+}, 0)
+
 lspformat.setup({})
 
 local on_attach = function(client)
