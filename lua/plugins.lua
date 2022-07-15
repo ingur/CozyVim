@@ -20,6 +20,8 @@ local plugins = {
 
     { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons", opt = true },
 
+    { "rcarriga/nvim-notify" },
+
     { "xiyaowong/virtcolumn.nvim" },
 
     { "antoinemadec/FixCursorHold.nvim" },
@@ -109,6 +111,8 @@ local plugins = {
         end,
     },
 
+    { 'nvim-telescope/telescope-ui-select.nvim' },
+
     { "nvim-telescope/telescope-file-browser.nvim" },
 
     { "nvim-telescope/telescope-project.nvim", event = "BufWinEnter" },
@@ -151,7 +155,7 @@ local plugins = {
 
     { "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
-        cmd = "TroubleToggle",
+        -- cmd = "TroubleToggle",
         config = function()
             require("trouble").setup({})
         end
@@ -198,6 +202,16 @@ local plugins = {
     { "goolord/alpha-nvim",
         config = function()
             require("configs.alpha")
+        end,
+    },
+
+    -- session management
+    {
+        "folke/persistence.nvim",
+        event = "BufReadPre",
+        module = "persistence",
+        config = function()
+            require("persistence").setup()
         end,
     },
 

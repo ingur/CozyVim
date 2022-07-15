@@ -29,7 +29,7 @@ local lazygit  = Terminal:new({
         }
         nvim_buf_set_keymap(term.bufnr, 't', '<esc>', '<esc>', opts) -- restore default
         nvim_buf_set_keymap(term.bufnr, 't', "<C-g>", "<cmd>lua ToggleLazygit()<cr>", opts)
-        nvim_buf_set_keymap(term.bufnr, 't', 'q', "<cmd>close<cr>", opts)
+        -- nvim_buf_set_keymap(term.bufnr, 't', 'q', "<cmd>close<cr>", opts)
     end
 })
 

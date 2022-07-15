@@ -21,6 +21,7 @@ if synced then
     vim.g.coq_settings = {
         auto_start = "shut-up"
     }
+    vim.notify = require("notify")
 end
 
 vim.cmd("packadd packer.nvim")

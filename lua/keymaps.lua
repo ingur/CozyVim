@@ -54,7 +54,6 @@ wk.register({
 })
 
 -- hop keybinds
-
 wk.register({
     ["S"] = { ":HopWord<cr>", "Jump to desired word" },
     ["s"] = { ":HopChar2<cr>", "Jump to desired character" },
@@ -96,4 +95,12 @@ wk.register({
     ["<leader>bd"] = { "<cmd>BufferOrderByDirectory<cr>", "Order By Directory" },
     ["<leader>bl"] = { "<cmd>BufferOrderByLanguage<cr>", "Order By Language" },
     ["<leader>bw"] = { "<cmd>BufferOrderByWindowNumber<cr>", "Order By Window Number" },
+})
+
+-- session manager keybinds
+wk.register({
+    ["<leader>s"] = { "+Sessions" },
+    ["<leader>ss"] = { [[<cmd>lua require("persistence").load()<cr>]], "Restore Session for Current Directory" },
+    ["<leader>sl"] = { [[<cmd>lua require("persistence").load({ last = true })<cr>]], "Restore Last Session" },
+    ["<leader>sd"] = { [[<cmd>lua require("persistence").stop()<cr>]], "Stop Persistence => Don't Save Session on Exit" },
 })
