@@ -31,17 +31,21 @@ lspconfig["sumneko_lua"].setup(coq.lsp_ensure_capabilities({
     },
 }))
 
+lspconfig["rust_analyzer"].setup(coq.lsp_ensure_capabilities({
+    on_attach = on_attach,
+    settings = {
+        ["rust-analyzer"] = {
+            diagnostics = {
+                disabled = {
+                    "inactive-code"
+                }
+            }
+        }
+    },
+}))
+
 -- additional language servers
 -- https://github.com/williamboman/nvim-lsp-installer#available-lsps
-local servers = {
-    "jedi_language_server",
-}
-
-for _, lsp in pairs(servers) do
-    lspconfig[lsp].setup(coq.lsp_ensure_capabilities({
-        on_attach = on_attach
-    }))
-end
 
 require("coq_3p")({
     {
