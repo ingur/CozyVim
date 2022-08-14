@@ -32,7 +32,7 @@ if synced then
             },
         },
         keymap = {
-            bigger_preview = "null",
+            bigger_preview = "",
         },
         display = {
             pum = {
