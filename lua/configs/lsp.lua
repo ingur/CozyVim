@@ -2,7 +2,7 @@ local lsp_installer = require("nvim-lsp-installer")
 local lspsignature = require("lsp_signature")
 local lspformat = require("lsp-format")
 local lspconfig = require("lspconfig")
-local coq = require("coq")
+--[[local coq = require("coq")]]
 
 lsp_installer.setup({
     automatic_installation = true
@@ -20,7 +20,7 @@ local on_attach = function(client)
     require("lsp-format").on_attach(client)
 end
 
-lspconfig["sumneko_lua"].setup(coq.lsp_ensure_capabilities({
+lspconfig["sumneko_lua"].setup(--[[coq.lsp_ensure_capabilities(]] {
     on_attach = on_attach,
     settings = {
         Lua = {
@@ -29,9 +29,9 @@ lspconfig["sumneko_lua"].setup(coq.lsp_ensure_capabilities({
             }
         }
     },
-}))
+}--[[)]] )
 
-lspconfig["rust_analyzer"].setup(coq.lsp_ensure_capabilities({
+lspconfig["rust_analyzer"].setup(--[[coq.lsp_ensure_capabilities(]] {
     on_attach = on_attach,
     settings = {
         ["rust-analyzer"] = {
@@ -42,7 +42,7 @@ lspconfig["rust_analyzer"].setup(coq.lsp_ensure_capabilities({
             }
         }
     },
-}))
+}--[[)]] )
 
 -- additional language servers
 -- https://github.com/williamboman/nvim-lsp-installer#available-lsps

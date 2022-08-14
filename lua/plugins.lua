@@ -81,7 +81,7 @@ local plugins = {
     },
 
     { "ms-jpq/coq-nvim", branch = "coq", run = ":COQdeps", },
-    { "ms-jpq/coq.artifacts", branch = "artifacts", },
+    -- { "ms-jpq/coq.artifacts", branch = "artifacts", },
     { "ms-jpq/coq.thirdparty", branch = "3p" },
 
     { "github/copilot.vim" },
