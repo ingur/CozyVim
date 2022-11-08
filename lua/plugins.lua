@@ -92,7 +92,7 @@ local plugins = {
     -- { "ms-jpq/coq.artifacts", branch = "artifacts", },
     -- { "ms-jpq/coq.thirdparty", branch = "3p" },
     { "hrsh7th/nvim-cmp",
-        requires = { 
+        requires = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
             "hrsh7th/nvim-cmp",
@@ -101,7 +101,7 @@ local plugins = {
             -- "hrsh7th/cmp-vsnip",
             -- "hrsh7th/vim-vsnip",
             "saadparwaiz1/cmp_luasnip",
-            {"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"},
+            { "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" },
         },
     },
 
