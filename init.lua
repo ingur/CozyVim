@@ -18,28 +18,6 @@ local synced = bootstrap()
 
 if synced then
     require("impatient")
-    vim.g.coq_settings = {
-        auto_start = "shut-up",
-        -- limits = {
-        --     completion_auto_timeout = 0.1,
-        -- },
-        clients = {
-            snippets = {
-                warn = {},
-            },
-            lsp = {
-                resolve_timeout = 0.1,
-            },
-        },
-        keymap = {
-            bigger_preview = "",
-        },
-        display = {
-            pum = {
-                fast_close = false,
-            },
-        },
-    }
     vim.notify = require("notify")
 end
 
