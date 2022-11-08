@@ -26,6 +26,12 @@ local plugins = {
 
     { "antoinemadec/FixCursorHold.nvim" },
 
+    { "nmac427/guess-indent.nvim",
+        config = function()
+            require("guess-indent").setup({})
+        end,
+    },
+
     -- treesitter plugins
 
     { "nvim-treesitter/nvim-treesitter",

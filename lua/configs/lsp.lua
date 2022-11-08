@@ -20,6 +20,13 @@ local on_attach = function(client)
     require("lsp-format").on_attach(client)
 end
 
+-- local attach = function(server, settings) 
+--     lspconfig[server].setup({
+--         on_attach = on_attach,
+--         settings = settings,
+--     })
+-- end
+
 lspconfig["sumneko_lua"].setup(--[[coq.lsp_ensure_capabilities(]] {
     on_attach = on_attach,
     settings = {
@@ -31,7 +38,7 @@ lspconfig["sumneko_lua"].setup(--[[coq.lsp_ensure_capabilities(]] {
     },
 }--[[)]] )
 
-lspconfig["rust_analyzer"].setup(--[[coq.lsp_ensure_capabilities(]] {
+lspconfig["rust_analyzer"].setup({
     on_attach = on_attach,
     settings = {
         ["rust-analyzer"] = {
@@ -42,7 +49,41 @@ lspconfig["rust_analyzer"].setup(--[[coq.lsp_ensure_capabilities(]] {
             }
         }
     },
-}--[[)]] )
+})
+
+lspconfig["tsserver"].setup({
+    on_attach = on_attach,
+    init_options = {
+        preferences = {
+            disableSuggestions = true,
+        },
+    },
+    settings = {
+        javascript = {
+            format = {
+                semicolons = "insert",
+            },
+        },
+    },
+})
+
+
+
+lspconfig["html"].setup({
+    on_attach = on_attach,
+})
+
+lspconfig["cssls"].setup({
+    on_attach = on_attach,
+})
+
+lspconfig["jsonls"].setup({
+    on_attach = on_attach,
+})
+
+lspconfig["marksman"].setup({
+    on_attach = on_attach,
+})
 
 -- additional language servers
 -- https://github.com/williamboman/nvim-lsp-installer#available-lsps

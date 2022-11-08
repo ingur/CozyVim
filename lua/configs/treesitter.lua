@@ -1,10 +1,7 @@
 local treesitter = require("nvim-treesitter.configs")
 
 local options = {
-    ensure_installed = {
-        "lua",
-        "python"
-    },
+    ensure_installed = "all",
 
     highlight = {
         enable = true,
