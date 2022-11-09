@@ -79,6 +79,7 @@ local plugins = {
         },
         config = function()
             require("configs.lsp")
+            require("configs.cmp")
         end,
     },
 
