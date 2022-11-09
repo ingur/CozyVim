@@ -1,6 +1,13 @@
 -- load base nvim options
 require("options")
 
+local has_custom, custom = pcall(require, "custom")
+
+if has_custom and custom["options"] ~= nil then
+    -- load custom options
+    custom.options()
+end
+
 --- ensure packer is installed, and returns whether we need to sync after bootstrap
 local function bootstrap()
     local fn = vim.fn
@@ -36,8 +43,14 @@ packer.init({
     }
 })
 
--- load plugins
+-- load core plugin table
 local plugins = require("plugins")
+
+-- merge with custom plugin table
+if has_custom and custom["plugins"] ~= nil and #custom.plugins > 0 then
+    plugins = vim.tbl_deep_extend("force", plugins, custom.plugins)
+end
+
 packer.startup(function(use)
     for _, plugin in pairs(plugins) do
         use(plugin)

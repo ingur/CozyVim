@@ -17,6 +17,7 @@ dashboard.section.buttons.val = {
     dashboard.button("p", " > Project Browser", "<cmd>Telescope project<CR>"),
     dashboard.button("s", " > Restore Last Session", [[<cmd>lua require("persistence").load({ last = true })<cr>]]),
     dashboard.button("u", " > Update Plugins", "<cmd>PackerSync<CR>"),
+    dashboard.button("x", " > Custom Settings", "<cmd>e ~/.config/nvim/lua/custom/init.lua<CR>"),
     dashboard.button("q", " > Quit", "<cmd>qa<CR>"),
 }
 
