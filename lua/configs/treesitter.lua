@@ -1,7 +1,20 @@
 local treesitter = require("nvim-treesitter.configs")
 
 local options = {
-    ensure_installed = {},
+    ensure_installed = {
+        "c",
+        "cpp",
+        "css",
+        "lua",
+        "scss",
+        "html",
+        "json",
+        "rust",
+        "python",
+        "markdown",
+        "gitignore",
+        "javascript",
+    },
 
     auto_install = true,
 
