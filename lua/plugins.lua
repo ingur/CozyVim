@@ -32,6 +32,8 @@ local plugins = {
         end,
     },
 
+    { "gpanders/editorconfig.nvim" },
+
     -- treesitter plugins
 
     { "nvim-treesitter/nvim-treesitter",
