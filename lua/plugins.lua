@@ -187,7 +187,7 @@ local plugins = {
 
     -- terminal popups
 
-    { "akinsho/toggleterm.nvim", tag = "v1.*",
+    { "akinsho/toggleterm.nvim", tag = "*",
         config = function()
             require("configs.toggleterm")
         end,
