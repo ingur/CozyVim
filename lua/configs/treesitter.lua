@@ -4,6 +4,8 @@ local options = {
 
     ensure_installed = "all",
 
+    ignore_install = { "d" },
+
     --[[ ensure_installed = {
         "c",
         "cpp",
