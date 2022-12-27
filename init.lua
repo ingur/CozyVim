@@ -46,13 +46,19 @@ packer.init({
 -- load core plugin table
 local plugins = require("plugins")
 
+-- TODO: plugin tables should use plugin-names as keys so we can override settings
 -- merge with custom plugin table
-if has_custom and custom["plugins"] ~= nil and #custom.plugins > 0 then
-    plugins = vim.tbl_deep_extend("force", plugins, custom.plugins)
-end
+-- if has_custom and custom["plugins"] ~= nil and #custom.plugins > 0 then
+--     plugins = vim.tbl_deep_extend("force", plugins, custom.plugins)
+-- end
 
 packer.startup(function(use)
     for _, plugin in pairs(plugins) do
+        use(plugin)
+    end
+
+    -- NOTE: temp hack
+    for _, plugin in pairs(custom.plugins) do
         use(plugin)
     end
 end)
