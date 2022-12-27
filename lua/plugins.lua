@@ -18,6 +18,16 @@ local plugins = {
 
     { "nvim-lualine/lualine.nvim", config = function() require("lualine").setup() end },
 
+    { "gelguy/wilder.nvim",
+        event = "CmdlineEnter",
+        requires = {
+            { "romgrk/fzy-lua-native", },
+        },
+        config = function()
+            require("configs.wilder")
+        end,
+    },
+
     { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons", opt = true },
 
     { "rcarriga/nvim-notify" },
