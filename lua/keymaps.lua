@@ -1,4 +1,5 @@
 local wk = require("which-key")
+local has_custom, custom = pcall(require, "custom")
 
 -- basic keybindings
 wk.register({
@@ -104,3 +105,8 @@ wk.register({
     ["<leader>sl"] = { [[<cmd>lua require("persistence").load({ last = true })<cr>]], "Restore Last Session" },
     ["<leader>sd"] = { [[<cmd>lua require("persistence").stop()<cr>]], "Stop Persistence => Don't Save Session on Exit" },
 })
+
+-- load custom keymaps
+if has_custom and custom["keymaps"] then
+    custom.keymaps(wk)
+end

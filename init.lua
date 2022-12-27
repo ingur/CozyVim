@@ -1,6 +1,13 @@
 -- load base nvim options
 require("options")
 
+local has_custom, custom = pcall(require, "custom")
+
+if has_custom and custom["options"] ~= nil then
+    -- load custom options
+    custom.options()
+end
+
 --- ensure packer is installed, and returns whether we need to sync after bootstrap
 local function bootstrap()
     local fn = vim.fn
@@ -18,28 +25,6 @@ local synced = bootstrap()
 
 if synced then
     require("impatient")
-    vim.g.coq_settings = {
-        auto_start = "shut-up",
-        -- limits = {
-        --     completion_auto_timeout = 0.1,
-        -- },
-        clients = {
-            snippets = {
-                warn = {},
-            },
-            lsp = {
-                resolve_timeout = 0.1,
-            },
-        },
-        keymap = {
-            bigger_preview = "",
-        },
-        display = {
-            pum = {
-                fast_close = false,
-            },
-        },
-    }
     vim.notify = require("notify")
 end
 
@@ -58,8 +43,21 @@ packer.init({
     }
 })
 
--- load plugins
-local plugins = require("plugins")
+local function add_keys(plugins)
+    local tbl = {}
+    for _, plugin in ipairs(plugins) do
+        tbl[plugin[1]] = plugin
+    end
+    return tbl
+end
+
+-- load core plugin table
+local plugins = add_keys(require("plugins"))
+
+if has_custom and custom["plugins"] ~= nil and #custom.plugins > 0 then
+    plugins = vim.tbl_deep_extend("force", plugins, add_keys(custom.plugins))
+end
+
 packer.startup(function(use)
     for _, plugin in pairs(plugins) do
         use(plugin)

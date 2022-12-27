@@ -14,9 +14,19 @@ local plugins = {
         end,
     },
 
-    { "dstein64/vim-startuptime", opt = true, cmd = 'StartupTime' },
+    { "dstein64/vim-startuptime", opt = true, cmd = "StartupTime" },
 
     { "nvim-lualine/lualine.nvim", config = function() require("lualine").setup() end },
+
+    { "gelguy/wilder.nvim",
+        event = "CmdlineEnter",
+        requires = {
+            { "romgrk/fzy-lua-native", },
+        },
+        config = function()
+            require("configs.wilder")
+        end,
+    },
 
     { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons", opt = true },
 
@@ -26,12 +36,22 @@ local plugins = {
 
     { "antoinemadec/FixCursorHold.nvim" },
 
+    { "nmac427/guess-indent.nvim",
+        config = function()
+            require("guess-indent").setup({})
+        end,
+    },
+
+    { "gpanders/editorconfig.nvim" },
+
     -- treesitter plugins
 
     { "nvim-treesitter/nvim-treesitter",
         config = function()
             require("configs.treesitter")
         end,
+        after = "nvim-lspconfig",
+        run = ":TSUpdate",
     },
 
     { "nvim-treesitter/nvim-treesitter-refactor", after = "nvim-treesitter" },
@@ -71,6 +91,7 @@ local plugins = {
         },
         config = function()
             require("configs.lsp")
+            require("configs.cmp")
         end,
     },
 
@@ -80,9 +101,22 @@ local plugins = {
         end,
     },
 
-    { "ms-jpq/coq-nvim", branch = "coq", run = ":COQdeps", },
+    -- { "ms-jpq/coq-nvim", branch = "coq", run = ":COQdeps", },
     -- { "ms-jpq/coq.artifacts", branch = "artifacts", },
-    { "ms-jpq/coq.thirdparty", branch = "3p" },
+    -- { "ms-jpq/coq.thirdparty", branch = "3p" },
+    { "hrsh7th/nvim-cmp",
+        requires = {
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/nvim-cmp",
+            "hrsh7th/cmp-copilot", -- for copilot
+            "onsails/lspkind.nvim", -- vscode-like pictograms
+            -- "hrsh7th/cmp-vsnip",
+            -- "hrsh7th/vim-vsnip",
+            "saadparwaiz1/cmp_luasnip",
+            { "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" },
+        },
+    },
 
     { "github/copilot.vim" },
 
@@ -111,7 +145,7 @@ local plugins = {
         end,
     },
 
-    { 'nvim-telescope/telescope-ui-select.nvim' },
+    { "nvim-telescope/telescope-ui-select.nvim" },
 
     { "nvim-telescope/telescope-file-browser.nvim" },
 
@@ -123,8 +157,8 @@ local plugins = {
         event = "BufRead",
         config = function()
             require("numb").setup({
-                show_numbers = true, -- Enable 'number' for the window while peeking
-                show_cursorline = true, -- Enable 'cursorline' for the window while peeking
+                show_numbers = true, -- Enable "number" for the window while peeking
+                show_cursorline = true, -- Enable "cursorline" for the window while peeking
             })
         end,
     },
@@ -145,9 +179,9 @@ local plugins = {
     },
 
 
-    { 'rmagatti/goto-preview',
+    { "rmagatti/goto-preview",
         config = function()
-            require('goto-preview').setup({
+            require("goto-preview").setup({
                 default_mappings = true
             })
         end
@@ -163,7 +197,7 @@ local plugins = {
 
     -- terminal popups
 
-    { "akinsho/toggleterm.nvim", tag = "v1.*",
+    { "akinsho/toggleterm.nvim", tag = "*",
         config = function()
             require("configs.toggleterm")
         end,
@@ -190,8 +224,8 @@ local plugins = {
     { "karb94/neoscroll.nvim",
         module = "neoscroll",
         -- these are the default keys used by neoscroll
-        keys = { '<C-u>', '<C-d>', '<C-b>', '<C-f>',
-            '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
+        keys = { "<C-u>", "<C-d>", "<C-b>", "<C-f>",
+            "<C-y>", "<C-e>", "zt", "zz", "zb" },
         config = function()
             require("neoscroll").setup({})
         end,

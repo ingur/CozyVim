@@ -51,6 +51,7 @@ opt.colorcolumn = "90" -- adds a ruler
 
 opt.showmode = false -- status bar already shows mode
 
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 -- disable some builtin vim plugins
 local default_plugins = {
