@@ -10,7 +10,7 @@ opt.cmdheight = 2 -- allows more spaced for neovim command line
 opt.title = true -- enable window title
 opt.cul = true -- enable cursor line
 
-vim.opt.termguicolors = true -- enable terminal colors
+opt.termguicolors = true -- enable terminal colors
 
 -- indenting
 opt.tabstop = 4
@@ -51,7 +51,13 @@ opt.colorcolumn = "90" -- adds a ruler
 
 opt.showmode = false -- status bar already shows mode
 
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
+opt.completeopt = { "menu", "menuone", "noselect" }
+
+opt.scrolloff = 8 -- keeps cursor in the middle of the screen
+opt.sidescrolloff = 8
+
+opt.title = true
+opt.titlestring = "%f - CozyVim"
 
 -- disable some builtin vim plugins
 local default_plugins = {
