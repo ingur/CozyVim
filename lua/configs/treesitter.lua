@@ -2,10 +2,12 @@ local treesitter = require("nvim-treesitter.configs")
 
 local options = {
     ensure_installed = {
+        -- "all",
         "c",
         "cpp",
         "css",
         "lua",
+        "vim",
         "scss",
         "html",
         "json",
