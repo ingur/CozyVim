@@ -27,7 +27,6 @@ local options = {
         "c_sharp",
         "markdown",
         "gitignore",
-        "gitignore",
         "javascript",
         "markdown_inline",
     },
