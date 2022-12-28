@@ -100,6 +100,9 @@ wk.register({
 wk.register({
     ["<C-t>"] = { "Toggle Terminal" },
     ["<C-g>"] = { function() ToggleLazygit() end, "Toggle Lazygit" },
+    ["<leader>t"] = { name = "+ToggleTerm" },
+    ["<leader>tv"] = { "<cmd>ToggleTerm direction=vertical<cr>", "Toggle Terminal Vertical" },
+    ["<leader>th"] = { "<cmd>ToggleTerm direction=horizontal<cr>", "Toggle Terminal horizontal" },
 })
 
 -- barbar tab manager keybinds
