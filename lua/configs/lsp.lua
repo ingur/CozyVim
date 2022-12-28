@@ -22,9 +22,15 @@ end
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = false
 
-lspconfig["sumneko_lua"].setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
+-- https://github.com/williamboman/nvim-lsp-installer#available-lsps
+local servers = {
+    ["html"] = {},
+    ["cssls"] = {},
+    ["jsonls"] = {},
+    ["marksman"] = {},
+}
+
+servers["sumneko_lua"] = {
     settings = {
         Lua = {
             completion = {
@@ -35,11 +41,9 @@ lspconfig["sumneko_lua"].setup({
             }
         }
     },
-})
+}
 
-lspconfig["rust_analyzer"].setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
+servers["rust_analyzer"] = {
     settings = {
         ["rust-analyzer"] = {
             diagnostics = {
@@ -49,11 +53,9 @@ lspconfig["rust_analyzer"].setup({
             }
         }
     },
-})
+}
 
-lspconfig["tsserver"].setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
+servers["tsserver"] = {
     init_options = {
         preferences = {
             disableSuggestions = true,
@@ -66,28 +68,16 @@ lspconfig["tsserver"].setup({
             },
         },
     },
-})
-
--- additional language servers
--- https://github.com/williamboman/nvim-lsp-installer#available-lsps
-local other_servers = {
-    "html",
-    "cssls",
-    "jsonls",
-    "marksman",
 }
 
-for _, lsp in ipairs(other_servers) do
-    lspconfig[lsp].setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-    })
-end
-
--- load custom language servers
+-- add custom language servers
 local has_custom, custom = pcall(require, "custom")
 if has_custom and custom["lsp_servers"] ~= nil then
-    for server, config in pairs(custom.lsp_servers) do
+    servers = vim.tbl_deep_extend("force", servers, custom["lsp_servers"])
+end
+
+for server, config in pairs(servers) do
+    if config ~= nil then
         config.capabilities = capabilities
         config.on_attach = on_attach
         lspconfig[server].setup(config)

@@ -17,9 +17,44 @@ wk.register({
     ["<C-c>"] = { "<esc><cmd>q<cr>", "Quit", mode = 'v' }
 })
 
+-- window management keybindings
+wk.register({
+    ["<C-h>"] = { "<C-w>h", "Move to Left Window" },
+    ["<C-j>"] = { "<C-w>j", "Move to Bottom Window" },
+    ["<C-k>"] = { "<C-w>k", "Move to Top Window" },
+    ["<C-l>"] = { "<C-w>l", "Move to Right Window" },
+    ["<C-Up>"] = { "<cmd>resize +2<cr>", "Resize Window Up" },
+    ["<C-Down>"] = { "<cmd>resize -2<cr>", "Resize Window Down" },
+    ["<C-Left>"] = { "<cmd>vertical resize +2<cr>", "Resize Window Left" },
+    ["<C-Right>"] = { "<cmd>vertical resize -2<cr>", "Resize Window Right" },
+})
+
 -- lsp keybindings
 wk.register({
-    ["<C-k>"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show Lsp Hover" },
+    ["K"] = { function() vim.lsp.buf.hover() end, "Show Lsp Hover" },
+    ["gD"] = { function() vim.lsp.buf.declaration() end, "Go to Lsp Declaration" },
+    ["gd"] = { function() vim.lsp.buf.definition() end, "Go to Lsp Definition" },
+    -- ["<C-k>"] = { function() vim.lsp.buf.signature_help() end, "Show Lsp Signature Help" },
+    ["gi"] = { function() vim.lsp.buf.implementation() end, "Go to Lsp Implementation" },
+    ["gr"] = { function() vim.lsp.buf.references() end, "Show Lsp References" },
+    ["<leader>w"] = { name = "+Workspace" },
+    ["<leader>wa"] = { function() vim.lsp.buf.add_workspace_folder() end, "Add Lsp Workspace Folder" },
+    ["<leader>wr"] = { function() vim.lsp.buf.remove_workspace_folder() end, "Remove Lsp Workspace Folder" },
+    ["<leader>wl"] = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+        "List Lsp Workspace Folders" },
+    ["<leader>D"] = { function() vim.lsp.buf.type_definition() end, "Go to Lsp Type Definition" },
+    ["<leader>r"] = { name = "+Rename" },
+    ["<leader>rn"] = { function() vim.lsp.buf.rename() end, "Rename Lsp Symbol" },
+    ["<leader>c"] = { name = "+Code" },
+    ["<leader>ca"] = { function() vim.lsp.buf.code_action() end, "Code Action" },
+    ["[d"] = { function() vim.diagnostic.goto_prev() end, "Go to Previous Lsp Diagnostic" },
+    ["]d"] = { function() vim.diagnostic.goto_next() end, "Go to Next Lsp Diagnostic" },
+    ["gp"] = { name = "+Goto Preview" },
+    ["gpd"] = { function() require("goto-preview").goto_preview_definition() end, "Goto Preview Definition" },
+    ["gpt"] = { function() require("goto-preview").goto_preview_type_definition() end, "Goto Preview Type Definition" },
+    ["gpi"] = { function() require("goto-preview").goto_preview_implementation() end, "Goto Preview Implementation" },
+    ["gpr"] = { function() require("goto-preview").goto_preview_references() end, "Goto Preview References" },
+    ["gP"] = { function() require("goto-preview").close_all_win() end, "Close all Goto Preview Windows" },
 })
 
 -- telescope keybindings
@@ -64,7 +99,10 @@ wk.register({
 -- terminal keybinds
 wk.register({
     ["<C-t>"] = { "Toggle Terminal" },
-    ["<C-g>"] = { "<cmd>lua ToggleLazygit()<cr>", "Toggle Lazygit" },
+    ["<C-g>"] = { function() ToggleLazygit() end, "Toggle Lazygit" },
+    ["<leader>t"] = { name = "+ToggleTerm" },
+    ["<leader>tv"] = { "<cmd>ToggleTerm direction=vertical<cr>", "Toggle Terminal Vertical" },
+    ["<leader>th"] = { "<cmd>ToggleTerm direction=horizontal<cr>", "Toggle Terminal horizontal" },
 })
 
 -- barbar tab manager keybinds
