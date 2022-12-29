@@ -12,21 +12,15 @@ local plugins = {
         end,
     },
 
-    { "sainnhe/gruvbox-material",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            vim.opt.background = "dark"
-            vim.cmd [[colorscheme gruvbox-material]]
-        end,
-        enabled = cozyvim.colorscheme == "gruvbox-material",
+    { "nvim-lualine/lualine.nvim",
+        event = "VeryLazy",
+        config = true,
     },
 
-    { "nvim-lualine/lualine.nvim", event = "VeryLazy", config = true },
-
-    { "xiyaowong/virtcolumn.nvim", },
-
-    { "nmac427/guess-indent.nvim", config = true, cmd = { "GuessIndent" }, },
+    { "nmac427/guess-indent.nvim",
+        cmd = { "GuessIndent" },
+        config = true,
+    },
 
     { "gpanders/editorconfig.nvim", },
 
@@ -43,7 +37,13 @@ local plugins = {
         config = { options = { "buffers", "curdir", "tabpages", "winsize", "help" } },
     },
 
+    { "lukas-reineke/virt-column.nvim",
+        event = "BufRead",
+        config = true,
+    },
+
     { "lukas-reineke/indent-blankline.nvim",
+        event = "BufRead",
         config = function()
             vim.opt.list = true
             vim.opt.listchars:append("eol:↴")
@@ -225,6 +225,47 @@ local plugins = {
         end,
     },
 
+    -- colorthemes
+
+    { "sainnhe/gruvbox-material",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.opt.background = "dark"
+            vim.g.gruvbox_material_better_performance = 1
+            vim.cmd("colorscheme " .. cozyvim.colorscheme)
+        end,
+        enabled = cozyvim.colorscheme == "gruvbox-material",
+    },
+
+    { "sainnhe/everforest",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.opt.background = "dark"
+            vim.g.everforest_better_performance = 1
+            vim.cmd("colorscheme " .. cozyvim.colorscheme)
+        end,
+        enabled = cozyvim.colorscheme == "everforest",
+    },
+
+    { "olimorris/onedarkpro.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.cmd("colorscheme " .. cozyvim.colorscheme)
+        end,
+        enabled = vim.tbl_contains({ "onedark", "onelight", "onedark_vivid", "onedark_dark"}, cozyvim.colorscheme),
+    },
+
+    { "rmehri01/onenord.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.cmd("colorscheme " .. cozyvim.colorscheme)
+        end,
+        enabled = cozyvim.colorscheme == "onenord",
+    },
 }
 
 return plugins

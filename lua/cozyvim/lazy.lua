@@ -4,7 +4,7 @@ plugins = vim.tbl_values(plugins)
 
 local options = {
     defaults = { lazy = true },
-    install = { colorscheme = { "gruvbox-material", "habamax" } },
+    install = { colorscheme = { "habamax" } },
     -- checker = { enabled = true },
     performance = {
         rtp = {
