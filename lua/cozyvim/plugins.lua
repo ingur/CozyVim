@@ -80,7 +80,12 @@ local plugins = {
         config = true,
     },
 
-    { "folke/todo-comments.nvim", config = true },
+    { "folke/todo-comments.nvim",
+        cmd = { "TodoTrouble", "TodoTelescope" },
+        event = "BufReadPost",
+        keys = { "]t", "[t" },
+        config = true,
+    },
 
     -- terminal plugins
 

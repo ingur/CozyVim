@@ -15,14 +15,14 @@ local mode_adapters = {
 local defaults = {
     insert_mode = {
         -- save/quit with ctrl
-        ["<C-s>"] = { "<esc><cmd>w<cr>", "Save Current File", },
-        ["<C-c>"] = { "<esc><cmd>q<cr>", "Quit", },
+        ["<C-s>"] = { "<esc><cmd>w<cr>", "Save Current File" },
+        ["<C-c>"] = { "<esc><cmd>q<cr>", "Quit" },
 
         -- move/indent lines with alt
-        ["<A-j>"] = { "<Esc>:m .+1<CR>==gi", "Move Line Down", },
-        ["<A-k>"] = { "<Esc>:m .-2<CR>==gi", "Move Line Up", },
-        ["<A-h>"] = { "<Esc><<gi", "Move Left", },
-        ["<A-l>"] = { "<Esc>>>gi", "Move Right", },
+        ["<A-j>"] = { "<Esc>:m .+1<CR>==gi", "Move Line Down" },
+        ["<A-k>"] = { "<Esc>:m .-2<CR>==gi", "Move Line Up" },
+        ["<A-h>"] = { "<Esc><<gi", "Move Left" },
+        ["<A-l>"] = { "<Esc>>>gi", "Move Right" },
     },
     normal_mode = {
         -- save/quit with ctrl
@@ -80,6 +80,10 @@ local defaults = {
         -- hop keybindings
         ["S"] = { ":HopWord<cr>", "Jump to desired word" },
         ["s"] = { ":HopChar2<cr>", "Jump to desired character" },
+
+        -- todo-comments keybindings
+        ["]t"] = { function() require("todo-comments").jump_next() end, "Next Todo Comment" },
+        ["[t"] = { function() require("todo-comments").jump_prev() end, "Previous Todo Comment" },
 
         -- toggleterm keybindings
         ["<C-t>"] = { "Toggle Terminal" },
