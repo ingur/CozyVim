@@ -1,4 +1,3 @@
-local lspformat = require("lsp-format")
 local lspconfig = require("lspconfig")
 
 require("mason")

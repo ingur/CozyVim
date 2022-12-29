@@ -123,11 +123,12 @@ local plugins = {
         config = true,
     },
 
-    { "romgrk/barbar.nvim",
+    {
+        "akinsho/bufferline.nvim",
+        event = "BufWinEnter",
+        branch = "main",
         config = function()
-            require("bufferline").setup({
-                auto_hide = true
-            })
+            require("cozyvim.core.bufferline")
         end,
     },
 
@@ -195,6 +196,8 @@ local plugins = {
             require("cozyvim.core.cmp")
         end,
     },
+
+    { "jose-elias-alvarez/null-ls.nvim", },
 
     { "github/copilot.vim",
         event = "VeryLazy",

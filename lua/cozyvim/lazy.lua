@@ -1,13 +1,5 @@
-local function add_keys(plugins)
-    local tbl = {}
-    for _, plugin in ipairs(plugins) do
-        tbl[plugin[1]] = plugin
-    end
-    return tbl
-end
-
-local plugins = add_keys(require("cozyvim.plugins"))
-plugins = vim.tbl_deep_extend("force", plugins, add_keys(require("custom").plugins))
+local plugins = cozyvim.add_keys(require("cozyvim.plugins"))
+plugins = vim.tbl_deep_extend("force", plugins, cozyvim.add_keys(require("custom").plugins))
 plugins = vim.tbl_values(plugins)
 
 local options = {
