@@ -146,6 +146,7 @@ local defaults = {
         ["<A-l>"] = { "><cr>gv", "Move Selection Right" },
 
         -- NOTE: Comment.nvim does not seem to load these for V-Line mode
+        -- TODO: fix first time comment/uncomment only working on current line
         ["gc"] = { function() require("Comment.api").toggle.linewise() end, "Comment Toggle Linewise" },
         ["gb"] = { function() require("Comment.api").toggle.blockwise() end, "Comment Toggle Blockwise" },
     },
