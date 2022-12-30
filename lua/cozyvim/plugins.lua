@@ -184,16 +184,23 @@ local plugins = {
 
     { "lukas-reineke/lsp-format.nvim" },
 
-    { "j-hui/fidget.nvim", config = true, },
+    { "j-hui/fidget.nvim",
+        event = "BufReadPre",
+        config = true,
+    },
 
     { "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
+        event = { "InsertEnter", "CursorHold" },
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
             "hrsh7th/nvim-cmp",
-            "hrsh7th/cmp-copilot", -- for copilot
             "onsails/lspkind.nvim", -- vscode-like pictograms
+            { "zbirenbaum/copilot-cmp",
+                config = function()
+                    require("copilot_cmp").setup()
+                end,
+            },
             "saadparwaiz1/cmp_luasnip",
             "L3MON4D3/LuaSnip",
         },
@@ -204,9 +211,16 @@ local plugins = {
 
     { "jose-elias-alvarez/null-ls.nvim", },
 
-    { "github/copilot.vim",
-        event = "VeryLazy",
+    { "zbirenbaum/copilot.lua",
+        event = "VimEnter",
+        config = function()
+            vim.defer_fn(function()
+                require("copilot").setup()
+            end, 100)
+        end,
+        enabled = cozyvim.copilot.enabled
     },
+
 
     { "windwp/nvim-autopairs", config = true, },
 
@@ -255,7 +269,7 @@ local plugins = {
         config = function()
             vim.cmd("colorscheme " .. cozyvim.colorscheme)
         end,
-        enabled = vim.tbl_contains({ "onedark", "onelight", "onedark_vivid", "onedark_dark"}, cozyvim.colorscheme),
+        enabled = vim.tbl_contains({ "onedark", "onelight", "onedark_vivid", "onedark_dark" }, cozyvim.colorscheme),
     },
 
     { "rmehri01/onenord.nvim",

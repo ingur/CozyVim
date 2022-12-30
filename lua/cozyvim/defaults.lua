@@ -1,6 +1,10 @@
 -- default core settings
 cozyvim = {
     colorscheme = "gruvbox-material",
+    copilot = {
+        enabled = true,
+        cmp = true,
+    },
 }
 
 -- keymapping

@@ -124,9 +124,15 @@ local defaults = {
         ["<leader>sd"] = { [[<cmd>lua require("persistence").stop()<cr>]],
             "Stop Persistence => Don't Save Session on Exit" },
 
-
         -- plugin manager keybindings
-        ["<leader>l"] = { "<cmd>Lazy<cr>", "Manage Plugins", },
+        ["<leader>l"] = { "<cmd>Lazy<cr>", "Manage Plugins" },
+
+        -- alpha dashboard keybindings
+        ["<leader>;"] = { "<cmd>Alpha<cr>", "Open Dashboard" },
+
+        -- copilot keybindings
+        -- NOTE: might need to change these to better defaults
+        ["<leader>cp"] = cozyvim.copilot.enabled and { "<cmd>Copilot panel<cr>", "Open Copilot Panel" } or {},
     },
     visual_mode = {
         -- save/quit with ctrl
@@ -138,6 +144,10 @@ local defaults = {
         ["<A-k>"] = { ":m '<-2<CR>gv=gv", "Move Selection Up" },
         ["<A-h>"] = { "<<cr>gv", "Move Selection Left" },
         ["<A-l>"] = { "><cr>gv", "Move Selection Right" },
+
+        -- NOTE: Comment.nvim does not seem to load these for V-Line mode
+        ["gc"] = { function() require("Comment.api").toggle.linewise() end, "Comment Toggle Linewise" },
+        ["gb"] = { function() require("Comment.api").toggle.blockwise() end, "Comment Toggle Blockwise" },
     },
     term_mode = {
         -- normal mode shortcut
