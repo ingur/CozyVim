@@ -1,12 +1,14 @@
 local lspconfig = require("lspconfig")
+local null_ls = require("null-ls")
 
 require("mason")
+local mason_null_ls = require("mason-null-ls")
 
 local on_attach = function(client)
     require("lsp-format").on_attach(client)
 end
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = false
 
 -- https://github.com/williamboman/nvim-lsp-installer#available-lsps
@@ -15,6 +17,7 @@ local servers = {
     ["cssls"] = {},
     ["jsonls"] = {},
     ["marksman"] = {},
+    ["pyright"] = {},
 }
 
 servers["sumneko_lua"] = {
@@ -24,9 +27,9 @@ servers["sumneko_lua"] = {
                 keywordSnippet = "Disable",
             },
             diagnostics = {
-                globals = { "vim", }
-            }
-        }
+                globals = { "vim" },
+            },
+        },
     },
 }
 
@@ -35,10 +38,10 @@ servers["rust_analyzer"] = {
         ["rust-analyzer"] = {
             diagnostics = {
                 disabled = {
-                    "inactive-code"
-                }
-            }
-        }
+                    "inactive-code",
+                },
+            },
+        },
     },
 }
 
@@ -70,3 +73,19 @@ for server, config in pairs(servers) do
         lspconfig[server].setup(config)
     end
 end
+
+-- load null-ls
+local options = {}
+options.capabilities = capabilities
+options.on_attach = on_attach
+
+-- allow users to add custom settings
+custom.null_ls(null_ls, options)
+
+null_ls.setup(options)
+
+mason_null_ls.setup({
+    ensure_installed = nil,
+    automatic_installation = true,
+    automatic_setup = false,
+})

@@ -1,30 +1,26 @@
 local plugins = {
-    { "nvim-lua/plenary.nvim", },
+    { "nvim-lua/plenary.nvim" },
 
-    { "kyazdani42/nvim-web-devicons", },
+    { "kyazdani42/nvim-web-devicons" },
 
-    { "folke/which-key.nvim", },
+    { "folke/which-key.nvim" },
 
-    { "dstein64/vim-startuptime",
+    {
+        "dstein64/vim-startuptime",
         cmd = "StartupTime",
         config = function()
             vim.g.startuptime_tries = 10
         end,
     },
 
-    { "nvim-lualine/lualine.nvim",
-        event = "VeryLazy",
-        config = true,
-    },
+    { "nvim-lualine/lualine.nvim", event = "VeryLazy", config = true },
 
-    { "nmac427/guess-indent.nvim",
-        cmd = { "GuessIndent" },
-        config = true,
-    },
+    { "nmac427/guess-indent.nvim", cmd = { "GuessIndent" }, config = true },
 
-    { "gpanders/editorconfig.nvim", },
+    { "gpanders/editorconfig.nvim" },
 
-    { "folke/trouble.nvim",
+    {
+        "folke/trouble.nvim",
         cmd = { "TroubleToggle", "Trouble" },
         config = {
             auto_open = false,
@@ -32,17 +28,16 @@ local plugins = {
         },
     },
 
-    { "folke/persistence.nvim",
+    {
+        "folke/persistence.nvim",
         event = "BufReadPre",
         config = { options = { "buffers", "curdir", "tabpages", "winsize", "help" } },
     },
 
-    { "lukas-reineke/virt-column.nvim",
-        event = "BufRead",
-        config = true,
-    },
+    { "lukas-reineke/virt-column.nvim", event = "BufRead", config = true },
 
-    { "lukas-reineke/indent-blankline.nvim",
+    {
+        "lukas-reineke/indent-blankline.nvim",
         event = "BufRead",
         config = function()
             vim.opt.list = true
@@ -53,21 +48,19 @@ local plugins = {
         end,
     },
 
-    { "karb94/neoscroll.nvim",
+    {
+        "karb94/neoscroll.nvim",
         -- these are the default keys used by neoscroll
-        keys = { "<C-u>", "<C-d>", "<C-b>", "<C-f>",
-            "<C-y>", "<C-e>", "zt", "zz", "zb" },
-        config = true
-    },
-
-    { "lewis6991/gitsigns.nvim",
-        event = "BufRead",
+        keys = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
         config = true,
     },
 
-    { "gelguy/wilder.nvim",
+    { "lewis6991/gitsigns.nvim", event = "BufRead", config = true },
+
+    {
+        "gelguy/wilder.nvim",
         event = "CmdlineEnter",
-        dependencies = { "romgrk/fzy-lua-native", },
+        dependencies = { "romgrk/fzy-lua-native" },
         config = function()
             require("cozyvim.core.wilder")
         end,
@@ -75,12 +68,10 @@ local plugins = {
 
     -- comments
 
-    { "numToStr/Comment.nvim",
-        keys = { "gc", "gb" },
-        config = true,
-    },
+    { "numToStr/Comment.nvim", keys = { "gc", "gb" }, config = true },
 
-    { "folke/todo-comments.nvim",
+    {
+        "folke/todo-comments.nvim",
         cmd = { "TodoTrouble", "TodoTelescope" },
         event = "BufReadPost",
         keys = { "]t", "[t" },
@@ -89,7 +80,9 @@ local plugins = {
 
     -- terminal plugins
 
-    { "akinsho/toggleterm.nvim", version = "*",
+    {
+        "akinsho/toggleterm.nvim",
+        version = "*",
         event = "BufWinEnter",
         config = function()
             require("cozyvim.core.toggleterm")
@@ -98,7 +91,8 @@ local plugins = {
 
     -- telescope plugins
 
-    { "nvim-telescope/telescope.nvim",
+    {
+        "nvim-telescope/telescope.nvim",
         cmd = "Telescope",
         config = function()
             require("cozyvim.core.telescope")
@@ -113,7 +107,8 @@ local plugins = {
 
     -- navigation plugins
 
-    { "nacro90/numb.nvim",
+    {
+        "nacro90/numb.nvim",
         event = "BufRead",
         config = function()
             require("numb").setup({
@@ -123,10 +118,7 @@ local plugins = {
         end,
     },
 
-    { "phaazon/hop.nvim",
-        event = "BufRead",
-        config = true,
-    },
+    { "phaazon/hop.nvim", event = "BufRead", config = true },
 
     {
         "akinsho/bufferline.nvim",
@@ -139,7 +131,8 @@ local plugins = {
 
     -- treesitter plugins
 
-    { "nvim-treesitter/nvim-treesitter",
+    {
+        "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         event = "BufReadPost",
         config = function()
@@ -147,17 +140,19 @@ local plugins = {
         end,
     },
 
-    { "nvim-treesitter/nvim-treesitter-refactor", },
+    { "nvim-treesitter/nvim-treesitter-refactor" },
 
-    { "nvim-treesitter/nvim-treesitter-context",
+    {
+        "nvim-treesitter/nvim-treesitter-context",
         config = function()
             require("treesitter-context").setup({})
         end,
     },
 
-    { "p00f/nvim-ts-rainbow", },
+    { "p00f/nvim-ts-rainbow" },
 
-    { "andymass/vim-matchup",
+    {
+        "andymass/vim-matchup",
         event = "BufReadPost",
         config = function()
             vim.g.matchup_matchparen_offscreen = { method = "popup" }
@@ -168,15 +163,19 @@ local plugins = {
 
     { "williamboman/mason-lspconfig.nvim" },
 
-    { "williamboman/mason.nvim",
+    { "jay-babu/mason-null-ls.nvim", commit = "ab5d99619de2263508abb7fb05ef3a0f24a8d73d" },
+
+    {
+        "williamboman/mason.nvim",
         config = function()
             require("cozyvim.core.mason")
         end,
     },
 
-    { "neovim/nvim-lspconfig",
+    {
+        "neovim/nvim-lspconfig",
         event = "BufReadPre",
-        dependencies = { "hrsh7th/cmp-nvim-lsp", },
+        dependencies = { "hrsh7th/cmp-nvim-lsp" },
         config = function()
             require("cozyvim.core.lsp")
         end,
@@ -184,19 +183,18 @@ local plugins = {
 
     { "lukas-reineke/lsp-format.nvim" },
 
-    { "j-hui/fidget.nvim",
-        event = "BufReadPre",
-        config = true,
-    },
+    { "j-hui/fidget.nvim", event = "BufReadPre", config = true },
 
-    { "hrsh7th/nvim-cmp",
+    {
+        "hrsh7th/nvim-cmp",
         event = { "InsertEnter", "CursorHold" },
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
             "hrsh7th/nvim-cmp",
             "onsails/lspkind.nvim", -- vscode-like pictograms
-            { "zbirenbaum/copilot-cmp",
+            {
+                "zbirenbaum/copilot-cmp",
                 config = function()
                     require("copilot_cmp").setup()
                 end,
@@ -209,30 +207,29 @@ local plugins = {
         end,
     },
 
-    { "jose-elias-alvarez/null-ls.nvim", },
+    { "jose-elias-alvarez/null-ls.nvim" },
 
-    { "zbirenbaum/copilot.lua",
+    {
+        "zbirenbaum/copilot.lua",
         event = "VimEnter",
         config = function()
             vim.defer_fn(function()
                 require("copilot").setup()
             end, 100)
         end,
-        enabled = cozyvim.copilot.enabled
+        enabled = cozyvim.copilot.enabled,
     },
 
+    { "windwp/nvim-autopairs", config = true },
 
-    { "windwp/nvim-autopairs", config = true, },
-
-    { "rmagatti/goto-preview",
-        config = {
-            default_mappings = false
-        },
-    },
+    { "rmagatti/goto-preview", config = {
+        default_mappings = false,
+    } },
 
     -- startup screen
 
-    { "goolord/alpha-nvim",
+    {
+        "goolord/alpha-nvim",
         lazy = false,
         config = function()
             require("cozyvim.core.alpha")
@@ -241,7 +238,8 @@ local plugins = {
 
     -- colorthemes
 
-    { "sainnhe/gruvbox-material",
+    {
+        "sainnhe/gruvbox-material",
         lazy = false,
         priority = 1000,
         config = function()
@@ -252,7 +250,8 @@ local plugins = {
         enabled = cozyvim.colorscheme == "gruvbox-material",
     },
 
-    { "sainnhe/everforest",
+    {
+        "sainnhe/everforest",
         lazy = false,
         priority = 1000,
         config = function()
@@ -263,7 +262,8 @@ local plugins = {
         enabled = cozyvim.colorscheme == "everforest",
     },
 
-    { "olimorris/onedarkpro.nvim",
+    {
+        "olimorris/onedarkpro.nvim",
         lazy = false,
         priority = 1000,
         config = function()
@@ -272,7 +272,8 @@ local plugins = {
         enabled = vim.tbl_contains({ "onedark", "onelight", "onedark_vivid", "onedark_dark" }, cozyvim.colorscheme),
     },
 
-    { "rmehri01/onenord.nvim",
+    {
+        "rmehri01/onenord.nvim",
         lazy = false,
         priority = 1000,
         config = function()

@@ -1,4 +1,4 @@
-local lspkind = require('lspkind')
+local lspkind = require("lspkind")
 local cmp = require("cmp")
 
 local luasnip = require("luasnip")
@@ -11,9 +11,9 @@ luasnip.config.set_config({
 })
 
 local sources = {
-    { name = 'path', group_index = 1, },
-    { name = 'nvim_lsp', group_index = 1 },
-    { name = 'luasnip', group_index = 3, keyword_length = 3 },
+    { name = "path", group_index = 1 },
+    { name = "nvim_lsp", group_index = 1 },
+    { name = "luasnip", group_index = 3, keyword_length = 3 },
 }
 
 local menu = {
@@ -24,7 +24,7 @@ local menu = {
 }
 
 if cozyvim.copilot.enabled and cozyvim.copilot.cmp then
-    sources[#sources + 1] = { name = 'copilot', group_index = 1 }
+    sources[#sources + 1] = { name = "copilot", group_index = 1 }
     menu["copilot"] = "[Cop]"
 end
 
@@ -56,34 +56,34 @@ cmp.setup({
     --     end
     -- end,
     mapping = cmp.mapping.preset.insert({
-        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-d>'] = cmp.mapping.scroll_docs(4),
-        ['<CR>'] = cmp.mapping.confirm {
+        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-d>"] = cmp.mapping.scroll_docs(4),
+        ["<CR>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = false,
-        },
-        ['<Tab>'] = vim.schedule_wrap(function(fallback)
+        }),
+        ["<Tab>"] = vim.schedule_wrap(function(fallback)
             if cmp.visible() and has_words_before() then
                 cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
             else
                 fallback()
             end
-        end, { 'i', 's' }),
-        ['<S-Tab>'] = vim.schedule_wrap(function(fallback)
+        end, { "i", "s" }),
+        ["<S-Tab>"] = vim.schedule_wrap(function(fallback)
             if cmp.visible() and has_words_before() then
                 cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
             else
                 fallback()
             end
-        end, { 'i', 's' }),
+        end, { "i", "s" }),
     }),
     formatting = {
         format = lspkind.cmp_format({
             mode = "symbol_text",
-            menu = menu
+            menu = menu,
         }),
     },
     sources = cmp.config.sources(sources, {
-        { name = 'buffer' },
-    })
+        { name = "buffer" },
+    }),
 })
