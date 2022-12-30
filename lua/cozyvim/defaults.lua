@@ -2,7 +2,7 @@
 cozyvim = {
     colorscheme = "gruvbox-material",
     copilot = {
-        enabled = false,
+        enabled = true,
         cmp = false,
     },
 }
