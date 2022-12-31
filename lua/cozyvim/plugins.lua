@@ -144,13 +144,6 @@ local plugins = {
 	{ "nvim-treesitter/nvim-treesitter-refactor" },
 
 	{
-		"nvim-treesitter/nvim-treesitter-context",
-		config = function()
-			require("treesitter-context").setup({})
-		end,
-	},
-
-	{
 		"andymass/vim-matchup",
 		event = "BufReadPost",
 		config = function()
@@ -161,10 +154,6 @@ local plugins = {
 	{ "windwp/nvim-autopairs", event = "InsertEnter", config = true },
 
 	-- lsp and autocompletion plugins
-
-	{ "williamboman/mason-lspconfig.nvim" },
-
-	{ "jay-babu/mason-null-ls.nvim" },
 
 	{
 		"williamboman/mason.nvim",
@@ -182,7 +171,20 @@ local plugins = {
 		end,
 	},
 
+	{ "williamboman/mason-lspconfig.nvim" },
+
+	{ "jose-elias-alvarez/null-ls.nvim" },
+
+	{ "jay-babu/mason-null-ls.nvim" },
+
 	{ "lukas-reineke/lsp-format.nvim" },
+
+	{
+		"SmiteshP/nvim-navic",
+		config = function()
+			vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+		end,
+	},
 
 	{ "j-hui/fidget.nvim", event = "BufReadPre", config = true },
 
@@ -207,8 +209,6 @@ local plugins = {
 			require("cozyvim.core.cmp")
 		end,
 	},
-
-	{ "jose-elias-alvarez/null-ls.nvim" },
 
 	{
 		"zbirenbaum/copilot.lua",
