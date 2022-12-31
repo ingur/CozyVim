@@ -135,6 +135,7 @@ local plugins = {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		event = "BufReadPost",
+		dependencies = { "p00f/nvim-ts-rainbow" },
 		config = function()
 			require("cozyvim.core.treesitter")
 		end,
@@ -149,8 +150,6 @@ local plugins = {
 		end,
 	},
 
-	{ "p00f/nvim-ts-rainbow" },
-
 	{
 		"andymass/vim-matchup",
 		event = "BufReadPost",
@@ -163,7 +162,7 @@ local plugins = {
 
 	{ "williamboman/mason-lspconfig.nvim" },
 
-	{ "jay-babu/mason-null-ls.nvim", commit = "ab5d99619de2263508abb7fb05ef3a0f24a8d73d" },
+	{ "jay-babu/mason-null-ls.nvim" },
 
 	{
 		"williamboman/mason.nvim",
@@ -220,7 +219,7 @@ local plugins = {
 		enabled = cozyvim.copilot.enabled,
 	},
 
-	{ "windwp/nvim-autopairs", config = true },
+	{ "windwp/nvim-autopairs", event = "InsertEnter", config = true },
 
 	{ "rmagatti/goto-preview", config = {
 		default_mappings = false,
@@ -269,7 +268,12 @@ local plugins = {
 		config = function()
 			vim.cmd("colorscheme " .. cozyvim.colorscheme)
 		end,
-		enabled = vim.tbl_contains({ "onedark", "onelight", "onedark_vivid", "onedark_dark" }, cozyvim.colorscheme),
+		enabled = cozyvim.check_colorschemes({
+			"onedark",
+			"onelight",
+			"onedark_vivid",
+			"onedark_dark",
+		}),
 	},
 
 	{
@@ -289,10 +293,30 @@ local plugins = {
 		config = function()
 			vim.cmd("colorscheme " .. cozyvim.colorscheme)
 		end,
-		enabled = vim.tbl_contains(
-			{ "tokyonight", "tokyonight-night", "tokyonight-storm", "tokyonight-day", "tokyonight-moon" },
-			cozyvim.colorscheme
-		),
+		enabled = cozyvim.check_colorschemes({
+			"tokyonight",
+			"tokyonight-night",
+			"tokyonight-storm",
+			"tokyonight-day",
+			"tokyonight-moon",
+		}),
+	},
+
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd("colorscheme " .. cozyvim.colorscheme)
+		end,
+		enabled = cozyvim.check_colorschemes({
+			"catppuccin",
+			"catppuccin-latte",
+			"catppuccin-frappe",
+			"catppuccin-macchiato",
+			"catppuccin-mocha",
+		}),
 	},
 }
 
