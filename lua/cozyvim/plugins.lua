@@ -158,6 +158,8 @@ local plugins = {
 		end,
 	},
 
+	{ "windwp/nvim-autopairs", event = "InsertEnter", config = true },
+
 	-- lsp and autocompletion plugins
 
 	{ "williamboman/mason-lspconfig.nvim" },
@@ -218,8 +220,6 @@ local plugins = {
 		end,
 		enabled = cozyvim.copilot.enabled,
 	},
-
-	{ "windwp/nvim-autopairs", event = "InsertEnter", config = true },
 
 	{ "rmagatti/goto-preview", config = {
 		default_mappings = false,
