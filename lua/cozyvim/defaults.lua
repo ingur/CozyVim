@@ -5,6 +5,15 @@ cozyvim = {
         enabled = false,
         cmp = false,
     },
+    nls = {
+        sources = {
+            code_actions = {},
+            diagnostics = {},
+            formatting = {},
+            completion = {},
+            hover = {},
+        },
+    }
 }
 
 -- keymapping

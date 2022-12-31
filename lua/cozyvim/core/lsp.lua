@@ -1,11 +1,40 @@
 local lspconfig = require("lspconfig")
-local null_ls = require("null-ls")
+local nls = require("null-ls")
 
 require("mason")
-local mason_null_ls = require("mason-null-ls")
+local mason_nls = require("mason-null-ls")
 
-local on_attach = function(client)
-    require("lsp-format").on_attach(client)
+-- https://github.com/folke/dot/blob/master/config/nvim/lua/config/plugins/null-ls.lua
+local function has_nls_formatter(buf)
+    local sources = require("null-ls.sources")
+    local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+    return #sources.get_available(ft, "NULL_LS_FORMATTING") > 0
+end
+
+-- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts
+local nls_formatting = function(bufnr)
+    vim.lsp.buf.format({
+        filter = function(client) return client.name == "null-ls" end,
+        bufnr = bufnr,
+    })
+end
+
+-- formatting on save callback
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+local on_attach = function(client, buf)
+    if has_nls_formatter(buf) then
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = buf })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = augroup,
+            buffer = buf,
+            callback = function()
+                nls_formatting(buf)
+            end,
+        })
+    else
+        require("lsp-format").on_attach(client)
+    end
 end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -75,16 +104,27 @@ for server, config in pairs(servers) do
 end
 
 -- load null-ls
-local options = {}
+local options = cozyvim.nls
 options.capabilities = capabilities
 options.on_attach = on_attach
 
--- allow users to add custom settings
-custom.null_ls(null_ls, options)
+-- load custom null-ls sources
+local sources = vim.deepcopy(options.sources)
+options.sources = {}
 
-null_ls.setup(options)
+for group, list in pairs(sources) do
+    for source, config in pairs(list) do
+        if type(config) == "table" then
+            table.insert(options.sources, nls.builtins[group][source].with(config))
+        elseif config == true then
+            table.insert(options.sources, nls.builtins[group][source])
+        end
+    end
+end
 
-mason_null_ls.setup({
+nls.setup(options)
+
+mason_nls.setup({
     ensure_installed = nil,
     automatic_installation = true,
     automatic_setup = false,
