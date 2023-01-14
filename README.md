@@ -30,7 +30,7 @@ mv ~/.local/share/nvim ~/.local/share/nvim.bak
 ```bash
 git clone https://github.com/ingur/CozyVim ~/.config/nvim && nvim
 ```
-> NOTE: missing dependencies are mostly installed automatically, in case something does not work immediately, you might need to restart Neovim a couple of times
+> NOTE: missing dependencies/plugins are mostly installed automatically, in case something does not work immediately, you might need to restart Neovim a couple of times
 
 - If you ever run into errors, you can reset CozyVim like so:
 ```bash
