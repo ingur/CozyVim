@@ -1,5 +1,5 @@
 local plugins = cozyvim.add_keys(require("cozyvim.plugins"))
-plugins = vim.tbl_deep_extend("force", plugins, cozyvim.add_keys(require("custom").plugins))
+plugins = vim.tbl_deep_extend("force", plugins, cozyvim.add_keys(custom.plugins))
 plugins = vim.tbl_values(plugins)
 
 local options = {

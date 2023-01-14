@@ -99,10 +99,7 @@ servers["tsserver"] = {
 }
 
 -- add custom language servers
-local has_custom, custom = pcall(require, "custom")
-if has_custom and custom["lsp_servers"] ~= nil then
-	servers = vim.tbl_deep_extend("force", servers, custom["lsp_servers"])
-end
+servers = vim.tbl_deep_extend("force", servers, custom.lsp_servers)
 
 for server, config in pairs(servers) do
 	if config ~= nil then
