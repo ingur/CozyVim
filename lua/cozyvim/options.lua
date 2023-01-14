@@ -28,7 +28,7 @@ opt.mouse = "a" -- enables mouse support
 opt.number = true -- enable line numbers
 opt.rnu = true -- enable relative line numbers
 
-opt.shortmess:append { s = true, I = true } -- disable nvim intro
+opt.shortmess:append({ s = true, I = true }) -- disable nvim intro
 
 opt.signcolumn = "yes"
 opt.splitbelow = true
@@ -44,9 +44,9 @@ opt.lazyredraw = true
 
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
-opt.whichwrap:append "<>[]hl"
+opt.whichwrap:append("<>[]hl")
 
-opt.colorcolumn = "90" -- adds a ruler
+-- opt.colorcolumn = "90" -- adds a ruler
 
 opt.showmode = false -- status bar already shows mode
 
@@ -56,10 +56,10 @@ opt.scrolloff = 8 -- keeps cursor in the middle of the screen
 opt.sidescrolloff = 8
 
 opt.title = true
-opt.titlestring = "%f - CozyVim"
+opt.titlestring = "CozyVim - %f"
 
 -- set shada path
 vim.schedule(function()
-    vim.opt.shadafile = vim.fn.expand "$HOME" .. "/.local/share/nvim/shada/main.shada"
-    vim.cmd [[ silent! rsh ]]
+	vim.opt.shadafile = vim.fn.expand("$HOME") .. "/.local/share/nvim/shada/main.shada"
+	vim.cmd([[ silent! rsh ]])
 end)
