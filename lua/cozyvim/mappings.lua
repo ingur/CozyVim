@@ -163,7 +163,7 @@ local defaults = {
 		-- telescope keybindings
 		["<leader>f"] = { name = "+File" },
 		["<leader>ff"] = { "<cmd>Telescope find_files<cr>", "Find File" },
-		["<leader>fg"] = { "<cmd>Telescope git_files<cr>", "Find Git Files" },
+		["<leader>fg"] = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
 		["<leader>fb"] = { "<cmd>Telescope file_browser<cr>", "File Browser" },
 		["<leader>fp"] = { "<cmd>Telescope project<cr>", "Project Browser" },
 
