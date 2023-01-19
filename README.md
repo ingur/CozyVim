@@ -18,6 +18,7 @@ My personal, modern and easily extendable configuration for nvim. Basically my o
 
 - Neovim >= 0.8.0
 - `git`, `make`, `pip`, `python`, `npm`, `node`, `cargo`
+- `tree-sitter` (`cargo install tree-sitter-cli`)
 
 ## Getting Started
 
@@ -32,7 +33,8 @@ git clone https://github.com/ingur/CozyVim ~/.config/nvim && nvim
 ```
 > NOTE: missing dependencies/plugins are mostly installed automatically, in case something does not work immediately, you might need to restart Neovim a couple of times
 
-- If you ever run into errors, you can reset CozyVim like so:
+- Be sure to run `:checkhealth` whenever you get stuck
+- If you ever run into other errors, you can always reset CozyVim like so:
 ```bash
 rm -rf ~/.local/share/nvim ~/.local/state/nvim/lazy ~/.config/nvim/lazy-lock.json
 ```
