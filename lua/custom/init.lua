@@ -30,5 +30,5 @@ custom.plugins = {
 
 custom.lsp_servers = {
     -- add custom lsp-servers here
-    -- see https://github.com/williamboman/nvim-lsp-installer for available LSP's
+    -- see https://github.com/williamboman/mason-lspconfig.nvim for available LSP's
 }
