@@ -8,6 +8,6 @@ require("cozyvim.lazy") -- bootstrap lazy.nvim & load plugins
 vim.api.nvim_create_autocmd("User", {
     pattern = "VeryLazy",
     callback = function()
-      require("cozyvim.mappings")
+        require("cozyvim.mappings")
     end,
 })
