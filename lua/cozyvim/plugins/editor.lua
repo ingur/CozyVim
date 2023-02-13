@@ -131,6 +131,11 @@ return {
             local nvim_buf_set_keymap = vim.api.nvim_buf_set_keymap
             local toggleterm = require("toggleterm")
 
+            local key_opts = {
+                noremap = true,
+                silent = true,
+            }
+
             toggleterm.setup({
                 shade_terminals = false,
                 open_mapping = "<C-t>",
@@ -141,23 +146,22 @@ return {
                         return vim.o.columns * 0.4
                     end
                 end,
+                on_open = function(term)
+                    nvim_buf_set_keymap(term.bufnr, 'n', '<C-p>', '<C-w>w<cmd>BufferLinePick<cr>', key_opts)
+                end,
             })
 
             local Terminal = require('toggleterm.terminal').Terminal
             local lazygit  = Terminal:new({
-                    cmd = "lazygit",
-                    hidden = true,
-                    count = 0,
-                    direction = "float",
-                    on_open = function(term)
-                        local opts = {
-                            noremap = true,
-                            silent = true
-                        }
-                        nvim_buf_set_keymap(term.bufnr, 't', '<esc>', '<esc>', opts) -- restore default
-                        nvim_buf_set_keymap(term.bufnr, 't', "<C-g>", "<cmd>lua _toggle_lazygit()<cr>", opts)
-                    end
-                })
+                cmd = "lazygit",
+                hidden = true,
+                count = 0,
+                direction = "float",
+                on_open = function(term)
+                    nvim_buf_set_keymap(term.bufnr, 't', '<esc>', '<esc>', key_opts) -- restore default
+                    nvim_buf_set_keymap(term.bufnr, 't', "<C-g>", "<cmd>lua _toggle_lazygit()<cr>", key_opts)
+                end
+            })
 
             function _toggle_lazygit()
                 lazygit:toggle()
