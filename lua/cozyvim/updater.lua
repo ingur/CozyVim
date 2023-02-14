@@ -11,9 +11,6 @@ job:new({
             command = "git",
             args = { "pull" },
             cwd = vim.fn.stdpath("config"),
-            on_stderr = function(_, data2)
-                print(data2)
-            end,
         }):start()
     end,
 }):start()
