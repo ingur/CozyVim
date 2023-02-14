@@ -17,3 +17,5 @@ job:new({
         }):start()
     end,
 }):start()
+
+print("hi")
