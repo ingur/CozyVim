@@ -11,7 +11,7 @@ servers["lua_ls"] = {
     settings = {
         Lua = {
             completion = {
-                keywordSnipset = "Disable",
+                keywordSnippet = "Disable",
             },
             diagnostics = {
                 globals = { "vim" },
