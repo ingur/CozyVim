@@ -32,7 +32,8 @@ return {
         "olimorris/onedarkpro.nvim",
         lazy = false,
         priority = 1000,
-        config = function()
+        config = function(_, opts)
+            if opts then require("onedarkpro").setup(opts) end
             vim.cmd("colorscheme " .. cozyvim.colorscheme)
         end,
         enabled = check_colorschemes({
@@ -47,7 +48,8 @@ return {
         "rmehri01/onenord.nvim",
         lazy = false,
         priority = 1000,
-        config = function()
+        config = function(_, opts)
+            if opts then require("onenord").setup(opts) end
             vim.cmd("colorscheme " .. cozyvim.colorscheme)
         end,
         enabled = cozyvim.colorscheme == "onenord",
@@ -57,7 +59,8 @@ return {
         "folke/tokyonight.nvim",
         lazy = false,
         priority = 1000,
-        config = function()
+        config = function(_, opts)
+            if opts then require("tokyonight").setup(opts) end
             vim.cmd("colorscheme " .. cozyvim.colorscheme)
         end,
         enabled = check_colorschemes({
@@ -74,7 +77,8 @@ return {
         name = "catppuccin",
         lazy = false,
         priority = 1000,
-        config = function()
+        config = function(_, opts)
+            if opts then require("catppuccin").setup(opts) end
             vim.cmd("colorscheme " .. cozyvim.colorscheme)
         end,
         enabled = check_colorschemes({
@@ -85,5 +89,16 @@ return {
             "catppuccin-mocha",
         }),
     },
+
+    {
+        "rebelot/kanagawa.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function(_, opts)
+            if opts then require("kanagawa").setup(opts) end
+            vim.cmd("colorscheme " .. cozyvim.colorscheme)
+        end,
+        enabled = cozyvim.colorscheme == "kanagawa"
+    }
 
 }
