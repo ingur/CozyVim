@@ -33,14 +33,22 @@ run_job(
         if c1 ~= 0 or #d1.stderr == 0 then
             return
         end
+
+        vim.notify('A new version of CozyVim is available!', 'info')
+        vim.notify('Downloading the latest version of CozyVim...', 'info')
+
         run_job(
             {
                 "git",
                 args = { "pull" },
                 cwd = dir
             },
-            function(c2, d2)
-                print(c2, vim.inspect(d2))
+            function(c2, _)
+                if c2 ~= 0 then
+                    vim.notify("Error Updating CozyVim", 'error')
+                    return
+                end
+                vim.notify('CozyVim has been updated to the latest version!', 'info')
             end
         )
     end
