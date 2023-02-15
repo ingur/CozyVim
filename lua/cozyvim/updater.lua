@@ -30,8 +30,8 @@ local function pull_updates()
             args = { "pull" },
             cwd = config_dir
         },
-        function(c2, _)
-            if c2 ~= 0 then
+        function(code, _)
+            if code ~= 0 then
                 vim.notify("Error Updating CozyVim", 'error')
                 return
             end
@@ -47,8 +47,8 @@ local function check_for_updates()
             args = { "fetch", "--dry-run" },
             cwd = config_dir
         },
-        function(c1, d1)
-            if c1 ~= 0 or #d1.stderr == 0 then
+        function(code, data)
+            if code ~= 0 or #data.stderr == 0 then
                 return
             end
 
