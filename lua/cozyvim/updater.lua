@@ -40,7 +40,7 @@ local function pull_updates()
     )
 end
 
-local function check_for_updates()
+local function fetch_updates()
     run_job(
         {
             "git",
@@ -60,4 +60,4 @@ local function check_for_updates()
     )
 end
 
-check_for_updates()
+fetch_updates()
