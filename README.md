@@ -7,7 +7,7 @@
   <img src="https://user-images.githubusercontent.com/45173070/219077688-9d3d252a-8961-4c86-8b8c-bd815e25c5d2.png" />
 </p>
 
-My personal, modern and easily extendable configuration for nvim. Basically my own more minimalistic take on LunarVim.
+My personal, modern and easily extendable configuration for nvim. Basically my own minimalistic take on LunarVim/LazyVim.
 
 ## Features
 
