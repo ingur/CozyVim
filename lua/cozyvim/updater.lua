@@ -21,35 +21,43 @@ local function run_job(opts, callback)
     end)
 end
 
-local dir = vim.fn.stdpath("config")
+local config_dir = vim.fn.stdpath("config")
 
-run_job(
-    {
-        "git",
-        args = { "fetch", "--dry-run" },
-        cwd = dir
-    },
-    function(c1, d1)
-        if c1 ~= 0 or #d1.stderr == 0 then
-            return
-        end
-
-        vim.notify('A new version of CozyVim is available!', 'info')
-        vim.notify('Downloading the latest version of CozyVim...', 'info')
-
-        run_job(
-            {
-                "git",
-                args = { "pull" },
-                cwd = dir
-            },
-            function(c2, _)
-                if c2 ~= 0 then
-                    vim.notify("Error Updating CozyVim", 'error')
-                    return
-                end
-                vim.notify('CozyVim has been updated to the latest version!', 'info')
+local function pull_updates()
+    run_job(
+        {
+            "git",
+            args = { "pull" },
+            cwd = config_dir
+        },
+        function(c2, _)
+            if c2 ~= 0 then
+                vim.notify("Error Updating CozyVim", 'error')
+                return
             end
-        )
-    end
-)
+            vim.notify('CozyVim has been updated to the latest version!', 'info')
+        end
+    )
+end
+
+local function check_for_updates()
+    run_job(
+        {
+            "git",
+            args = { "fetch", "--dry-run" },
+            cwd = config_dir
+        },
+        function(c1, d1)
+            if c1 ~= 0 or #d1.stderr == 0 then
+                return
+            end
+
+            vim.notify('A new version of CozyVim is available!', 'info')
+            vim.notify('Downloading the latest version of CozyVim...', 'info')
+
+            pull_updates()
+        end
+    )
+end
+
+check_for_updates()
