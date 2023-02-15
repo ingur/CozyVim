@@ -1,5 +1,5 @@
 # CozyVim
-xd
+
 <p align="center">
   <img src="https://user-images.githubusercontent.com/45173070/212475520-0b73fb92-4f87-479d-8abf-a6f80f19b9d5.png" />
 </p>
