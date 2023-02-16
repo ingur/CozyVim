@@ -40,7 +40,7 @@ git clone https://github.com/ingur/CozyVim ~/.config/nvim && nvim
 - Be sure to run `:checkhealth` whenever you get stuck
 - If you ever run into other errors, you can always reset CozyVim like so:
 ```bash
-rm -rf ~/.local/share/nvim ~/.local/state/nvim/lazy ~/.config/nvim/lazy-lock.json
+rm -rf ~/.local/share/nvim ~/.local/state/nvim/lazy ~/.config/nvim/lua/custom/lazy-lock.json
 ```
 
 ## TODO

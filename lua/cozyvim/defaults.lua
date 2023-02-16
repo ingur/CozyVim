@@ -30,6 +30,7 @@ cozyvim.lazy = {
         { import = "custom.plugins" }, -- custom plugins/overrides
         -- { import = "cozyvim.plugins.extras.module_name"} -- extra module example
     },
+    lockfile = vim.fn.stdpath("config") .. "/lua/custom/lazy-lock.json",
     defaults = {
         lazy = false,
         version = false,
