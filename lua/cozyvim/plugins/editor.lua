@@ -158,7 +158,7 @@ return {
                 count = 0,
                 direction = "float",
                 on_open = function(term)
-                    vim.cmd("setlocal sidescrolloff=0")
+                    vim.cmd("startinsert!")
                     nvim_buf_set_keymap(term.bufnr, 't', '<esc>', '<esc>', key_opts) -- restore default
                     nvim_buf_set_keymap(term.bufnr, 't', "<C-g>", "<cmd>lua _toggle_lazygit()<cr>", key_opts)
                 end
