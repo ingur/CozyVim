@@ -1,6 +1,6 @@
 require("cozyvim.defaults") -- cozyvim default settings
 require("cozyvim.options") -- cozyvim default options
-require("custom") -- custom settings/cozyvim overrides
+pcall(require, "custom") -- custom settings/cozyvim overrides
 
 require("cozyvim.lazy") -- bootstrap lazy.nvim & load plugins
 
