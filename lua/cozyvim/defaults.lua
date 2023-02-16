@@ -21,7 +21,7 @@ cozyvim = {
     },
     lazy = {}, -- lazy.nvim settings
     keys = {}, -- see cozyvim.mappings for defaults
-    utils = {}, -- utility functions
+    utils = require("cozyvim.utils"), -- utility functions
 }
 
 cozyvim.lazy = {
@@ -47,11 +47,3 @@ cozyvim.lazy = {
         }
     }
 }
-
-cozyvim.utils.add_keys = function(tbl)
-    local new_tbl = {}
-    for _, v in ipairs(tbl) do
-        new_tbl[v[1]] = v
-    end
-    return new_tbl
-end
