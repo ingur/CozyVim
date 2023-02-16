@@ -19,6 +19,10 @@ cozyvim = {
         on_attach = {},
         servers = {},
     },
+    copilot = { -- GitHub Copilot settings
+        enabled = false,
+        cmp = false,
+    },
     lazy = {}, -- lazy.nvim settings
     keys = {}, -- see cozyvim.mappings for defaults
     utils = require("cozyvim.utils"), -- utility functions
