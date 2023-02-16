@@ -28,12 +28,25 @@ My personal, modern and easily extendable configuration for nvim. Basically my o
 
 - Make a backup of your existing config if it exists:
 ```bash
+# required
 mv ~/.config/nvim ~/.config/nvim.bak
+
+# optional but recommended
 mv ~/.local/share/nvim ~/.local/share/nvim.bak
+mv ~/.local/state/nvim ~/.local/state/nvim.bak
+mv ~/.cache/nvim ~/.cache/nvim.bak
 ```
-- CozyVim can be installed like so:
+- CozyVim can be now be installed like so:
 ```bash
-git clone https://github.com/ingur/CozyVim ~/.config/nvim && nvim
+# core config
+git clone https://github.com/ingur/CozyVim ~/.config/nvim
+
+# custom settings template 
+git clone git@github.com:ingur/CozyVim-Custom.git ~/.config/nvim/lua/custom
+rm -rf ~/.config/nvim/lua/custom/.git
+
+# start neovim
+nvim
 ```
 > NOTE: missing dependencies/plugins are mostly installed automatically, in case something does not work immediately, you might need to restart Neovim
 
