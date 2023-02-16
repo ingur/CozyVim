@@ -14,7 +14,7 @@ servers["lua_ls"] = {
                 keywordSnippet = "Disable",
             },
             diagnostics = {
-                globals = { "vim" },
+                globals = { "vim", "cozyvim" },
             },
         },
     },

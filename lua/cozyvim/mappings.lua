@@ -20,12 +20,13 @@ local defaults = {
         ["<C-c>"] = { "<cmd>q<cr>", "Quit" },
 
         -- telescope keybindings
-        ["<leader>f"] = { name = "+File" },
+        ["<leader>f"] = { name = "+Telescope" },
         ["<leader>ff"] = { "<cmd>Telescope find_files<cr>", "Find File" },
         ["<leader>fb"] = { "<cmd>Telescope file_browser<cr>", "File Browser" },
         ["<leader>fp"] = { "<cmd>Telescope project<cr>", "Project Browser" },
         ["<leader>fg"] = { "<cmd>Telescope git_files<cr>", "Git Files" },
         ["<leader>/"] = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
+        ["<leader>fx"] = { function() cozyvim.utils.open_config() end, "CozyVim Config Files" },
 
         -- plugin manager keybindings
         ["<leader>l"] = { "<cmd>Lazy<cr>", "Manage Plugins" },
@@ -48,6 +49,7 @@ local defaults = {
 
         -- gitsigns keybindings
         -- see cozyvim.plugins.editor for all mappings assigned on_attach
+        ["<leader>g"] = { name = "+Git" },
         ["<leader>gh"] = { name = "+GitSigns" },
 
         -- mini.surround keybindings
