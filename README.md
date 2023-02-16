@@ -41,7 +41,7 @@ mv ~/.cache/nvim ~/.cache/nvim.bak
 # core config
 git clone https://github.com/ingur/CozyVim ~/.config/nvim
 
-# custom settings template 
+# custom settings template (or clone your own)
 git clone git@github.com:ingur/CozyVim-Custom.git ~/.config/nvim/lua/custom
 rm -rf ~/.config/nvim/lua/custom/.git
 
