@@ -26,7 +26,7 @@ My personal, modern and easily extendable configuration for nvim. Basically my o
 
 ## Getting Started
 
-- Make a backup of your existing config if it exists:
+- Make a backup of your existing config (if it exists):
 ```bash
 # required
 mv ~/.config/nvim ~/.config/nvim.bak
