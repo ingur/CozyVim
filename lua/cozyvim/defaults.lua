@@ -1,10 +1,6 @@
 cozyvim = {
     colorscheme = "gruvbox-material",
     updater = true, -- automatically keep CozyVim up to date
-    copilot = { -- GitHub Copilot settings
-        enabled = false,
-        cmp = false,
-    },
     nls = { -- null-ls settings
         sources = {
             code_actions = {},
