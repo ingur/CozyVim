@@ -77,7 +77,7 @@ local defaults = {
         ["<A-p>"] = { "<cmd>BufferLineTogglePin<cr>", "Toggle Pin Buffer" },
         ["<A-c>l"] = { "<cmd>BufferLineCloseLeft<cr>", "Close Buffers to the Left" },
         ["<A-c>r"] = { "<cmd>BufferLineCloseRight<cr>", "Close Buffers to the Right" },
-        ["<leader>b"] = { "+Buffers" },
+        ["<leader>b"] = { name = "+Buffers" },
         ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", "Sort By Tabs" },
         ["<leader>bl"] = { "<cmd>BufferLineSortByDirectory<cr>", "Sort By Directory" },
         ["<leader>be"] = { "<cmd>BufferLineSortByExtension<cr>", "Sort By Extension" },
