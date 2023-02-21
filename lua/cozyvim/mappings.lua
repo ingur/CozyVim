@@ -34,8 +34,6 @@ local defaults = {
         -- dashboard keybindings
         ["<leader>;"] = { "<cmd>Alpha<cr>", "Open Dashboard" },
 
-        ["<leader>x"] = { name = "+CozyVim" },
-
         -- hop keybindings
         ["S"] = { ":HopWordMW<cr>", "Jump to desired word" },
         ["s"] = { ":HopChar2MW<cr>", "Jump to desired 2 characters" },
