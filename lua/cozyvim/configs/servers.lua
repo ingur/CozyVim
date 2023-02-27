@@ -1,4 +1,4 @@
--- https://github.com/williamboman/nvim-lsp-installer#available-lsps
+-- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
 local servers = {
     ["html"] = {},
     ["cssls"] = {},
@@ -10,9 +10,6 @@ local servers = {
 servers["lua_ls"] = {
     settings = {
         Lua = {
-            completion = {
-                keywordSnippet = "Disable",
-            },
             diagnostics = {
                 globals = { "vim", "cozyvim" },
             },

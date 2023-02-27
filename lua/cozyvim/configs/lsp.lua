@@ -6,10 +6,6 @@ local nls = require("null-ls")
 
 mason.setup()
 
-mason_lspconfig.setup({
-    automatic_installation = true,
-})
-
 -- https://github.com/folke/dot/blob/master/config/nvim/lua/config/plugins/null-ls.lua
 local function has_nls_formatter(buf)
     local sources = require("null-ls.sources")
@@ -19,6 +15,7 @@ end
 
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts
 local nls_formatting = function(bufnr)
+    if not cozyvim.lsp.format_on_save then return end
     vim.lsp.buf.format({
         filter = function(client)
             return client.name == "null-ls"
@@ -28,28 +25,33 @@ local nls_formatting = function(bufnr)
 end
 
 -- formatting on save callback
-if cozyvim.lsp.format_on_save then
-    local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-    table.insert(cozyvim.lsp.on_attach, function(client, bufnr)
-        if has_nls_formatter(bufnr) then
-            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                group = augroup,
-                buffer = bufnr,
-                callback = function()
-                    nls_formatting(bufnr)
-                end,
-            })
-        else
-            require("lsp-format").on_attach(client)
-        end
-    end)
+local lsp_format = require("lsp-format")
+local format = lsp_format.format
+
+---@diagnostic disable-next-line: duplicate-set-field
+lsp_format.format = function(options)
+    if not cozyvim.lsp.format_on_save then return end
+    return format(options)
 end
 
+local augroup = vim.api.nvim_create_augroup("LspFormat", {})
+table.insert(cozyvim.lsp.on_attach, function(client, bufnr)
+    if has_nls_formatter(bufnr) then
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = augroup,
+            buffer = bufnr,
+            callback = function()
+                nls_formatting(bufnr)
+            end,
+        })
+    else
+        lsp_format.on_attach(client)
+    end
+end)
+
 -- initialize capabilities
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
--- TODO: fix snippet support to make it easily configurable
-capabilities.textDocument.completion.completionItem.snippetSupport = false
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local function on_attach(client, bufnr)
     for _, fn in ipairs(cozyvim.lsp.on_attach) do
@@ -57,13 +59,28 @@ local function on_attach(client, bufnr)
     end
 end
 
+local function setup(server)
+    local config = vim.tbl_deep_extend("force", {
+        capabilities = vim.deepcopy(capabilities),
+        on_attach = on_attach,
+    }, cozyvim.lsp.servers[server] or {})
+    lspconfig[server].setup(config)
+end
+
+local available = mason_lspconfig.get_available_servers()
+local ensure_installed = {}
 for server, config in pairs(cozyvim.lsp.servers) do
     if config ~= nil then
-        config.capabilities = capabilities
-        config.on_attach = on_attach
-        lspconfig[server].setup(config)
+        if config.mason == false or not vim.tbl_contains(available, server) then
+            setup(server)
+        else
+            table.insert(ensure_installed, server)
+        end
     end
 end
+
+mason_lspconfig.setup({ ensure_installed = ensure_installed })
+mason_lspconfig.setup_handlers({ setup })
 
 -- load null-ls
 local options = cozyvim.nls
@@ -74,6 +91,7 @@ options.on_attach = on_attach
 local sources = vim.deepcopy(options.sources)
 options.sources = {}
 
+ensure_installed = {}
 for group, list in pairs(sources) do
     for source, config in pairs(list) do
         if type(config) == "table" then

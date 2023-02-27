@@ -12,21 +12,53 @@ local mode_adapters = {
     operator_pending_mode = "o",
 }
 
+local lsp_document_symbols = {
+    "Class",
+    "Function",
+    "Method",
+    "Constructor",
+    "Interface",
+    "Module",
+    "Struct",
+    "Trait",
+    "Field",
+    "Property",
+}
+
 local defaults = {
     insert_mode = {
         ["<C-c>"] = { "<esc><cmd>q<cr>", "Quit" },
+        ["<esc>"] = { "<cmd>noh<cr><esc>", "Escape and clear hlsearch" },
+        ["<C-t>"] = { cozyvim.utils.toggle.terminal, "Toggle Terminal" },
     },
     normal_mode = {
         ["<C-c>"] = { "<cmd>q<cr>", "Quit" },
+        ["<esc>"] = { "<cmd>noh<cr><esc>", "Escape and clear hlsearch" },
 
         -- telescope keybindings
-        ["<leader>f"] = { name = "+Telescope" },
-        ["<leader>ff"] = { "<cmd>Telescope find_files<cr>", "Find File" },
+        ["<leader>f"] = { name = "+Find" },
+        ["<leader>/"] = { cozyvim.utils.telescope("live_grep"), "Find in Files (Grep)" },
+        ["<leader>:"] = { "<cmd>Telescope command_history<cr>", "Command History" },
+        ["<leader>ff"] = { cozyvim.utils.telescope("files"), "Find Files" },
+        ["<leader>fg"] = { cozyvim.utils.telescope("live_grep"), "Grep" },
         ["<leader>fb"] = { "<cmd>Telescope file_browser<cr>", "File Browser" },
         ["<leader>fp"] = { "<cmd>Telescope project<cr>", "Project Browser" },
-        ["<leader>fg"] = { "<cmd>Telescope git_files<cr>", "Git Files" },
-        ["<leader>/"] = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-        ["<leader>fx"] = { function() cozyvim.utils.open_config() end, "CozyVim Config Files" },
+        ["<leader>s"] = { name = "+Search" },
+        ["<leader>sa"] = { "<cmd>Telescope autocommands<cr>", "Auto Commands" },
+        ["<leader>sb"] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Buffer" },
+        ["<leader>sc"] = { "<cmd>Telescope command_history<cr>", "Command History" },
+        ["<leader>sC"] = { "<cmd>Telescope commands<cr>", "Commands" },
+        ["<leader>sd"] = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
+        ["<leader>sg"] = { cozyvim.utils.telescope("live_grep"), "Grep" },
+        ["<leader>sh"] = { "<cmd>Telescope help_tags<cr>", "Help Pages" },
+        ["<leader>sH"] = { "<cmd>Telescope highlights<cr>", "Search Highlight Groups" },
+        ["<leader>sk"] = { "<cmd>Telescope keymaps<cr>", "Key Maps" },
+        ["<leader>sM"] = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
+        ["<leader>sm"] = { "<cmd>Telescope marks<cr>", "Jump to Mark" },
+        ["<leader>so"] = { "<cmd>Telescope vim_options<cr>", "Options" },
+        ["<leader>sR"] = { "<cmd>Telescope resume<cr>", "Resume" },
+        ["<leader>sw"] = { cozyvim.utils.telescope("grep_string"), "Grep Word" },
+        ["<leader>ss"] = { cozyvim.utils.telescope("lsp_document_symbols", { symbols = lsp_document_symbols }), "Goto Symbol" },
 
         -- plugin manager keybindings
         ["<leader>l"] = { "<cmd>Lazy<cr>", "Manage Plugins" },
@@ -34,31 +66,50 @@ local defaults = {
         -- dashboard keybindings
         ["<leader>;"] = { "<cmd>Alpha<cr>", "Open Dashboard" },
 
+        -- custom settings keybindings
+        ["<leader>x"] = { cozyvim.utils.open_config, "Edit CozyVim Config" },
+
         -- hop keybindings
         ["S"] = { ":HopWordMW<cr>", "Jump to desired word" },
         ["s"] = { ":HopChar2MW<cr>", "Jump to desired 2 characters" },
-
-        -- spectre keybindings
-        ["<leader>rs"] = { function() require("spectre").open() end, "Replace in files (Spectre)" },
 
         -- todo-comments keybindings
         ["]t"] = { function() require("todo-comments").jump_next() end, "Next Todo Comment", },
         ["[t"] = { function() require("todo-comments").jump_prev() end, "Previous Todo Comment", },
 
         -- gitsigns keybindings
-        -- see cozyvim.plugins.editor for all mappings assigned on_attach
+        -- see plugin config for all mappings assigned on_attach
         ["<leader>g"] = { name = "+Git" },
-        ["<leader>gh"] = { name = "+GitSigns" },
+        ["<leader>gs"] = { name = "+GitSigns" },
 
         -- mini.surround keybindings
-        -- see cozyvim.plugins.coding for all default mappings
+        -- see plugin config for all default mappings
         ["gs"] = { name = "+Surround" },
 
         -- session management keybindings
-        ["<leader>s"] = { "+Sessions" },
-        ["<leader>ss"] = { [[<cmd>lua require("persistence").load()<cr>]], "Restore Session for Current Directory" },
-        ["<leader>sl"] = { [[<cmd>lua require("persistence").load({ last = true })<cr>]], "Restore Last Session" },
-        ["<leader>sd"] = { [[<cmd>lua require("persistence").stop()<cr>]], "Stop Persistence => Don't Save Session on Exit", },
+        ["<leader>q"] = { name = "+Quit/Sessions" },
+        ["<leader>qq"] = { "<cmd>qa<cr>", "Quit All" },
+        ["<leader>qs"] = { [[<cmd>lua require("persistence").load()<cr>]], "Restore Session for Current Directory" },
+        ["<leader>ql"] = { [[<cmd>lua require("persistence").load({ last = true })<cr>]], "Restore Last Session" },
+        ["<leader>qd"] = { [[<cmd>lua require("persistence").stop()<cr>]], "Stop Persistence => Don't Save Session on Exit", },
+
+        -- window management keybindings
+        ["<leader>w"] = { name = "+Window" },
+        ["<leader>ww"] = { "<C-W>p", "Other Window" },
+        ["<leader>wd"] = { "<C-W>c", "Delete Window" },
+        ["<leader>w-"] = { "<C-W>s", "Split Window Below" },
+        ["<leader>w|"] = { "<C-W>v", "Split Window Right" },
+        ["<leader>-"] = { "<C-W>s", "Split Window Below" },
+        ["<leader>|"] = { "<C-W>v", "Split Window Right" },
+
+        -- tab management keybindings
+        ["<leader><tab>"] = { name = "+Tab" },
+        ["<leader><tab>l"] = { "<cmd>tablast<cr>", "Last Tab" },
+        ["<leader><tab>f"] = { "<cmd>tabfirst<cr>", "First Tab" },
+        ["<leader><tab><tab>"] = { "<cmd>tabnew<cr>", "New Tab" },
+        ["<leader><tab>]"] = { "<cmd>tabnext<cr>", "Next Tab" },
+        ["<leader><tab>d"] = { "<cmd>tabclose<cr>", "Close Tab" },
+        ["<leader><tab>["] = { "<cmd>tabprevious<cr>", "Previous Tab" },
 
         -- bufferline tab manager keybindings
         ["<C-p>"] = { "<cmd>BufferLinePick<cr>", "Magic Buffer-picking Mode" },
@@ -90,11 +141,13 @@ local defaults = {
         ["<leader>bD"] = { function() require("mini.bufremove").delete(0, true) end, "Delete Buffer (Force)" },
 
         -- toggleterm keybindings
-        ["<C-t>"] = { "Toggle Terminal" },
-        ["<C-g>"] = { function() _toggle_lazygit() end, "Toggle Lazygit", },
-        ["<leader>t"] = { name = "+ToggleTerm" },
-        ["<leader>tv"] = { "<cmd>ToggleTerm direction=vertical<cr>", "Toggle Terminal Vertical" },
-        ["<leader>th"] = { "<cmd>ToggleTerm direction=horizontal<cr>", "Toggle Terminal horizontal" },
+        ["<C-t>"] = { cozyvim.utils.toggle.terminal, "Toggle Terminal" },
+        ["<C-g>"] = { _toggle_lazygit, "Toggle Lazygit", },
+
+        -- toggle keybindings
+        ["<leader>t"] = { name = "+Toggle" },
+        ["<leader>tt"] = { function() cozyvim.utils.toggle.term_direction() end, "Toggle Terminal Direction" },
+        ["<leader>tf"] = { function() cozyvim.utils.toggle.format_on_save() end, "Toggle Format on Save" },
 
         -- lsp keybindings
         ["K"] = { function() vim.lsp.buf.hover() end, "Show Lsp Hover", },
@@ -102,26 +155,29 @@ local defaults = {
         ["gd"] = { function() vim.lsp.buf.definition() end, "Go to Lsp Definition", },
         ["gi"] = { function() vim.lsp.buf.implementation() end, "Go to Lsp Implementation", },
         ["gr"] = { function() vim.lsp.buf.references() end, "Show Lsp References", },
-        ["<leader>w"] = { name = "+Workspace" },
-        ["<leader>wa"] = { function() vim.lsp.buf.add_workspace_folder() end, "Add Lsp Workspace Folder", },
-        ["<leader>wr"] = { function() vim.lsp.buf.remove_workspace_folder() end, "Remove Lsp Workspace Folder", },
-        ["<leader>wl"] = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "List Lsp Workspace Folders", },
         ["<leader>D"] = { function() vim.lsp.buf.type_definition() end, "Go to Lsp Type Definition", },
         ["<leader>r"] = { name = "+Rename" },
         ["<leader>rn"] = { function() vim.lsp.buf.rename() end, "Rename Lsp Symbol", },
+        ["<leader>rs"] = { function() require("spectre").open() end, "Replace in files (Spectre)" },
         ["<leader>c"] = { name = "+Code" },
         ["<leader>ca"] = { function() vim.lsp.buf.code_action() end, "Code Action", },
+        ["<leader>cf"] = { function() vim.lsp.buf.format() end, "Format Buffer" },
         ["[d"] = { function() vim.diagnostic.goto_prev() end, "Go to Previous Lsp Diagnostic", },
         ["]d"] = { function() vim.diagnostic.goto_next() end, "Go to Next Lsp Diagnostic", },
         ["gp"] = { name = "+Goto Preview" },
+        ---@diagnostic disable-next-line: missing-parameter
         ["gpd"] = { function() require("goto-preview").goto_preview_definition() end, "Goto Preview Definition", },
+        ---@diagnostic disable-next-line: missing-parameter
         ["gpt"] = { function() require("goto-preview").goto_preview_type_definition() end, "Goto Preview Type Definition", },
+        ---@diagnostic disable-next-line: missing-parameter
         ["gpi"] = { function() require("goto-preview").goto_preview_implementation() end, "Goto Preview Implementation", },
         ["gpr"] = { function() require("goto-preview").goto_preview_references() end, "Goto Preview References", },
         ["gP"] = { function() require("goto-preview").close_all_win() end, "Close all Goto Preview Windows", },
     },
     visual_mode = {
         ["<C-c>"] = { "<esc><cmd>q<cr>", "Quit" },
+        ["<leader>g"] = { name = "+Git" },
+        ["<leader>gs"] = { name = "+GitSigns" },
         ["gs"] = { name = "+Surround" },
     },
     term_mode = {

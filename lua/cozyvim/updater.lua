@@ -1,11 +1,13 @@
-if cozyvim.updater == false then return end
-
 local config_dir = vim.fn.stdpath("config")
 local uv = vim.loop
 
 local function run_job(opts, callback)
     local stdout = uv.new_pipe()
     local stderr = uv.new_pipe()
+
+    if not stdout or not stderr then
+        return
+    end
 
     opts.stdio = { nil, stdout, stderr }
 
@@ -21,6 +23,7 @@ local function run_job(opts, callback)
             stderr:close()
             callback(code, opts.data)
         end)
+
     uv.read_start(stdout, function(_, data)
         if data then table.insert(opts.data.stdout, data) end
     end)

@@ -1,16 +1,10 @@
--- Referenced from LazyVim: https://github.com/LazyVim/LazyVim <3
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 local opt = vim.opt
 
-opt.undofile = true
-opt.undolevels = 10000
-opt.updatetime = 200 -- Save swap file and trigger CursorHold
-opt.backup = false -- Don't store backup while overwriting the file
-opt.writebackup = false -- Don't store backup while overwriting the file
 opt.autowrite = true -- Enable auto write
+opt.backup = false -- Don't store backup while overwriting the file
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
 opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 3 -- Hide * markup for bold and italic
@@ -18,6 +12,7 @@ opt.confirm = true -- Confirm to save changes before exiting modified buffer
 opt.cursorline = true -- Enable highlighting of the current line
 opt.expandtab = true -- Use spaces instead of tabs
 opt.formatoptions = "jcroqlnt" -- tcqj
+opt.fillchars = { eob = " " } -- Disables tilde on end of buffer
 opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
 opt.ignorecase = true -- Ignore case
@@ -45,16 +40,14 @@ opt.splitright = true -- Put new windows right of current
 opt.tabstop = 4 -- Number of spaces tabs count for
 opt.termguicolors = true -- True color support
 opt.timeoutlen = 300
+opt.undofile = true
+opt.undolevels = 10000
+opt.updatetime = 200 -- Save swap file and trigger CursorHold
+opt.writebackup = false -- Don't store backup while overwriting the file
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5 -- Minimum window width
 opt.wrap = false -- Disable line wrap
 
-opt.title = true
-opt.titlestring = "CozyVim - %f" -- Custom title string
-opt.fillchars = { eob = " " } -- Disables tilde on end of buffer
-opt.hlsearch = false -- Disable search highlights
-
--- NOTE: This should be temp until 0.9 releases
 if vim.fn.has("nvim-0.9.0") == 1 then
     opt.splitkeep = "screen"
     opt.shortmess:append { C = true }
