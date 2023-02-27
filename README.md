@@ -38,15 +38,7 @@ mv ~/.cache/nvim ~/.cache/nvim.bak
 ```
 - CozyVim can be now be installed like so:
 ```bash
-# core config
-git clone https://github.com/ingur/CozyVim ~/.config/nvim
-
-# custom settings template (or clone your own)
-git clone git@github.com:ingur/CozyVim-Custom.git ~/.config/nvim/lua/custom
-rm -rf ~/.config/nvim/lua/custom/.git
-
-# start neovim
-nvim
+git clone https://github.com/ingur/CozyVim ~/.config/nvim && nvim
 ```
 > NOTE: missing dependencies/plugins are mostly installed automatically, in case something does not work immediately, you might need to restart Neovim
 
