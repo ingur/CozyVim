@@ -360,6 +360,9 @@ return {
         build = ":TSUpdate",
         version = false,
         event = { "BufReadPost", "BufNewFile" },
+        dependencies = {
+            "mrjones2014/nvim-ts-rainbow",
+        },
         opts = {
             highlight = {
                 enable = true
@@ -403,6 +406,9 @@ return {
                     scope_incremental = "<nop>",
                     node_decremental = "<bs>",
                 },
+            },
+            rainbow = {
+                enable = true,
             },
         },
         config = function(_, opts)
