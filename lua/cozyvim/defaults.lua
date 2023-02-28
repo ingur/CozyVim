@@ -1,6 +1,6 @@
 cozyvim = {
     colorscheme = "gruvbox-material",
-    updater = false, -- automatically keep CozyVim up to date
+    auto_update = true, -- automatically keep CozyVim up to date
     setup_auto_root = true, -- setup auto root using mini.misc (if available)
     nls = { -- null-ls settings
         sources = {

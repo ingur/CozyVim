@@ -61,12 +61,23 @@ local function fetch_updates()
                 return
             end
 
-            vim.notify('A new version of CozyVim is available!', 'info')
-            vim.notify('Downloading the latest version of CozyVim...', 'info')
+            vim.notify("A new version of CozyVim is available!" .. cozyvim.auto_update and "" or " (via :CozyUpdate)",
+                "info")
 
-            pull_updates()
+            if cozyvim.auto_update then
+                vim.notify("Downloading the latest version of CozyVim...", "info")
+                pull_updates()
+            end
         end
     )
 end
+
+vim.api.nvim_create_user_command("CozyUpdate", function(_)
+    pull_updates()
+end, {
+    bang = true,
+    desc = "Update CozyVim",
+    nargs = 0,
+})
 
 fetch_updates()
