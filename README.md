@@ -49,5 +49,4 @@ rm -rf ~/.local/share/nvim ~/.local/state/nvim/lazy ~/.config/nvim/lua/custom/la
 ```
 
 ## TODO
-- Document default keymappings here
-- Document customization options here
+- Documentation
