@@ -468,6 +468,10 @@ return {
                 disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" } },
             },
             sections = {
+                lualine_x = {
+                    { "encoding", separator = " ", },
+                    { "filetype", },
+                },
                 lualine_y = {
                     { "progress", separator = " ",
                         padding = { left = 1, right = 0 }
