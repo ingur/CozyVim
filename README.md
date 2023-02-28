@@ -21,8 +21,7 @@ My personal, modern and easily extendable configuration for nvim. Basically my o
 
 - Neovim >= 0.8.0
 - `git`, `make`, `pip`, `python`, `npm`, `node`, `cargo`
-- `tree-sitter` (optional) (`cargo install tree-sitter-cli`)
-- `lazygit` (recommended)
+- `lazygit` (hightly recommended)
 
 ## Getting Started
 
