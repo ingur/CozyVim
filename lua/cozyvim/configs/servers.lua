@@ -10,8 +10,11 @@ local servers = {
 servers["lua_ls"] = {
     settings = {
         Lua = {
-            diagnostics = {
-                globals = { "vim", "cozyvim" },
+            workspace = {
+                checkThirdParty = false,
+            },
+            completion = {
+                callSnippet = "Replace",
             },
         },
     },
