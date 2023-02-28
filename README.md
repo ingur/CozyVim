@@ -1,10 +1,10 @@
 # CozyVim
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/45173070/219077440-6572a179-5a81-4ecd-b205-d42d91f3e8d1.png" />
+  <img src="https://user-images.githubusercontent.com/45173070/221726955-6126fdbb-cdac-46ef-834f-c5cc323d9b99.png" />
 </p>
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/45173070/219077688-9d3d252a-8961-4c86-8b8c-bd815e25c5d2.png" />
+  <img src="https://user-images.githubusercontent.com/45173070/221728266-dcaf72fe-8625-4443-a80d-04dc52cce4d2.png" />
 </p>
 
 My personal, modern and easily extendable configuration for nvim. Basically my own minimalistic take on LunarVim/LazyVim.
