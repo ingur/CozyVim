@@ -73,6 +73,7 @@ local function fetch_updates()
 end
 
 vim.api.nvim_create_user_command("CozyUpdate", function(_)
+    vim.notify("Downloading the latest version of CozyVim...", "info")
     pull_updates()
 end, {
     bang = true,
