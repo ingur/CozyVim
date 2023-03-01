@@ -173,6 +173,16 @@ local defaults = {
         ["gpi"] = { function() require("goto-preview").goto_preview_implementation() end, "Goto Preview Implementation", },
         ["gpr"] = { function() require("goto-preview").goto_preview_references() end, "Goto Preview References", },
         ["gP"] = { function() require("goto-preview").close_all_win() end, "Close all Goto Preview Windows", },
+
+        -- debugging keybindings
+        ["<F3>"] = { require("dap").close, "Dap Stop Debugging" },
+        ["<F5>"] = { require("dap").continue, "Dap Continue/Start Debugging" },
+        ["<F6>"] = { require("dap").pause, "Dap Pause" },
+        ["<F7>"] = { require("dapui").toggle, "Dap Toggle UI" },
+        ["<F9>"] = { require("dap").toggle_breakpoint, "Dap Toggle Breakpoint" },
+        ["<F10>"] = { require("dap").step_over, "Dap Step Over" },
+        ["<F11>"] = { require("dap").step_into, "Dap Step Into" },
+        ["<F12>"] = { require("dap").step_out, "Dap Step Out" },
     },
     visual_mode = {
         ["<C-c>"] = { "<esc><cmd>q<cr>", "Quit" },

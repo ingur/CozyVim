@@ -440,15 +440,11 @@ return {
                 "lukas-reineke/lsp-format.nvim",
                 config = true,
             },
+            "mason.nvim",
             "hrsh7th/cmp-nvim-lsp",
-            "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "jose-elias-alvarez/null-ls.nvim",
             "jay-babu/mason-null-ls.nvim",
-            {
-                "jay-babu/mason-nvim-dap.nvim",
-                cond = cozyvim.dap.enabled,
-            },
         },
         config = function()
             require("cozyvim.configs.servers")
@@ -456,29 +452,54 @@ return {
         end,
     },
 
+    {
+        "williamboman/mason.nvim",
+        cmd = "Mason",
+        config = function(_, opts)
+            require("mason").setup(opts)
+        end,
+    },
+
     -- debugging plugins
+
     {
         "mfussenegger/nvim-dap",
         lazy = true,
+        dependencies = {
+            "mason.nvim",
+            "jay-babu/mason-nvim-dap.nvim",
+        },
+        cmd = {
+            "DapContinue",
+            "DapInstall",
+            "DapUninstall",
+            "DapLoadLaunchJSON",
+            "DapRestartFrame",
+            "DapSetLogLevel",
+            "DapShowLog",
+            "DapStepInto",
+            "DapStepOver",
+            "DapTerminate",
+            "DapToggleBreakpoint",
+            "DapToggleRepl",
+        },
         config = function()
-            require("cozyvim.configs.dap").setup()
+            require("cozyvim.configs.dap")
         end,
-        cond = cozyvim.dap.enabled,
     },
 
     {
         "rcarriga/nvim-dap-ui",
         lazy = true,
-        config = function()
-            require("cozyvim.configs.dap").setup_ui()
+        config = function(_, opts)
+            require("dapui").setup(opts)
         end,
-        cond = cozyvim.dap.enabled,
     },
 
     -- ui plugins
 
     {
-        "kyazdani42/nvim-web-devicons",
+        "nvim-tree/nvim-web-devicons",
         lazy = true,
     },
 

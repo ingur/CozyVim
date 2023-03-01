@@ -1,10 +1,7 @@
-local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 local mason_nls = require("mason-null-ls")
 local lspconfig = require("lspconfig")
 local nls = require("null-ls")
-
-mason.setup()
 
 -- https://github.com/folke/dot/blob/master/config/nvim/lua/config/plugins/null-ls.lua
 local function has_nls_formatter(buf)
