@@ -175,14 +175,14 @@ local defaults = {
         ["gP"] = { function() require("goto-preview").close_all_win() end, "Close all Goto Preview Windows", },
 
         -- debugging keybindings
-        ["<F3>"] = { require("dap").close, "Dap Stop Debugging" },
-        ["<F5>"] = { require("dap").continue, "Dap Continue/Start Debugging" },
-        ["<F6>"] = { require("dap").pause, "Dap Pause" },
-        ["<F7>"] = { require("dapui").toggle, "Dap Toggle UI" },
-        ["<F9>"] = { require("dap").toggle_breakpoint, "Dap Toggle Breakpoint" },
-        ["<F10>"] = { require("dap").step_over, "Dap Step Over" },
-        ["<F11>"] = { require("dap").step_into, "Dap Step Into" },
-        ["<F12>"] = { require("dap").step_out, "Dap Step Out" },
+        ["<F3>"] = { function() require("dap").close() end, "Dap Stop Debugging" },
+        ["<F5>"] = { function() require("dap").continue() end, "Dap Continue/Start Debugging" },
+        ["<F6>"] = { function() require("dap").pause() end, "Dap Pause" },
+        ["<F7>"] = { function() require("dapui").toggle() end, "Dap Toggle UI" },
+        ["<F9>"] = { function() require("dap").toggle_breakpoint() end, "Dap Toggle Breakpoint" },
+        ["<F10>"] = { function() require("dap").step_over() end, "Dap Step Over" },
+        ["<F11>"] = { function() require("dap").step_into() end, "Dap Step Into" },
+        ["<F12>"] = { function() require("dap").step_out() end, "Dap Step Out" },
     },
     visual_mode = {
         ["<C-c>"] = { "<esc><cmd>q<cr>", "Quit" },
