@@ -57,7 +57,7 @@ cozyvim.lazy = {
     spec = {
         { import = "cozyvim.plugins" }, -- core plugins
         { import = "cozyvim.colorschemes" }, -- preinstalled colorschemes
-        cozyvim.plugins, -- custom plugins/overrides loader
+        { import = "cozyvim.custom" }, -- custom plugins/overrides loader
         -- { import = "custom.plugins" }, -- custom plugins/overrides separate spec
         -- { import = "cozyvim.plugins.extras.module_name"} -- extra module example
     },
