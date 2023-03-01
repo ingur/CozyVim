@@ -445,10 +445,28 @@ return {
             "williamboman/mason-lspconfig.nvim",
             "jose-elias-alvarez/null-ls.nvim",
             "jay-babu/mason-null-ls.nvim",
+            "jay-babu/mason-nvim-dap.nvim",
         },
         config = function()
             require("cozyvim.configs.servers")
             require("cozyvim.configs.lsp")
+        end,
+    },
+
+    -- debugging plugins
+    {
+        "mfussenegger/nvim-dap",
+        lazy = true,
+        config = function()
+            require("cozyvim.configs.dap").setup()
+        end,
+    },
+
+    {
+        "rcarriga/nvim-dap-ui",
+        lazy = true,
+        config = function()
+            require("cozyvim.configs.dap").setup_ui()
         end,
     },
 
