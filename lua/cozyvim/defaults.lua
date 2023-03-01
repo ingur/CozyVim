@@ -1,3 +1,4 @@
+---@diagnostic disable-next-line: lowercase-global
 cozyvim = {
     colorscheme = "gruvbox-material",
     auto_update = true, -- automatically keep CozyVim up to date
