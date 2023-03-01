@@ -19,6 +19,9 @@ cozyvim = {
     cmp = {
         auto_select = false, -- auto select first cmp item on confirm
     },
+    dap = {
+        enabled = false, -- enable the dap configuration
+    },
     term = {
         direction = "horizontal", -- default ToggleTerm direction
     },
