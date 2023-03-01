@@ -5,6 +5,8 @@ local servers = {
     ["jsonls"] = {},
     ["marksman"] = {},
     ["pyright"] = {},
+    ["rust_analyzer"] = {},
+    ["tsserver"] = {},
 }
 
 servers["lua_ls"] = {
@@ -15,33 +17,6 @@ servers["lua_ls"] = {
             },
             completion = {
                 callSnippet = "Replace",
-            },
-        },
-    },
-}
-
-servers["rust_analyzer"] = {
-    settings = {
-        ["rust-analyzer"] = {
-            diagnostics = {
-                disabled = {
-                    "inactive-code",
-                },
-            },
-        },
-    },
-}
-
-servers["tsserver"] = {
-    init_options = {
-        preferences = {
-            disableSuggestions = true,
-        },
-    },
-    settings = {
-        javascript = {
-            format = {
-                semicolons = "insert",
             },
         },
     },
