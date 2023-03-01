@@ -1,3 +1,4 @@
+---@diagnostic disable-next-line: lowercase-global
 cozyvim = {
     colorscheme = "gruvbox-material",
     auto_update = true, -- automatically keep CozyVim up to date
@@ -18,6 +19,18 @@ cozyvim = {
     },
     cmp = {
         auto_select = false, -- auto select first cmp item on confirm
+    },
+    dap = {
+        opts = { -- see https://github.com/jay-babu/mason-nvim-dap.nvim
+            ensure_installed = {}, -- see https://github.com/jay-babu/mason-nvim-dap.nvim/blob/main/lua/mason-nvim-dap/mappings/source.lua
+            automatic_installation = false,
+            automatic_setup = false,
+        },
+        auto_open = true, -- automatically open dap ui on debug start
+        auto_close = true, -- automatically close dap ui on debug stop
+        launch_path = nil, -- path to launch.json file (defaults to .vscode/launch.json in cwd)
+        adapters = {}, -- custom mason-nvim-dap adapters/overrides
+        configurations = {}, -- custom mason-nvim-dap configurations/overrides
     },
     term = {
         direction = "horizontal", -- default ToggleTerm direction
