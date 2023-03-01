@@ -21,7 +21,14 @@ My personal, modern and easily extendable configuration for nvim. Basically my o
 
 - Neovim >= 0.8.0
 - `git`, `make`, `pip`, `python`, `npm`, `node`, `cargo`
-- `lazygit` (hightly recommended)
+- [lazygit](https://github.com/jesseduffield/lazygit) (hightly recommended)
+- a [Nerd Font](https://www.nerdfonts.com/) (highly recommended)
+- [ripgrep](https://github.com/BurntSushi/ripgrep) and [fd](https://github.com/sharkdp/fd) for telescope (recommended)
+- a terminal with true color and _undercurl_ support:
+  - [kitty](https://github.com/kovidgoyal/kitty) **_(Linux & Macos)_**
+  - [wezterm](https://github.com/wez/wezterm) **_(Linux, Macos & Windows)_**
+  - [alacritty](https://github.com/alacritty/alacritty) **_(Linux, Macos & Windows)_**
+  - [iterm2](https://iterm2.com/) **_(Macos)_**
 
 ## Getting Started
 
