@@ -172,7 +172,12 @@ return {
             },
         },
         opts = {
-            extensions_list = { "ui-select", "file_browser", "project", "fzf" }
+            extensions_list = { "ui-select", "file_browser", "project", "fzf" },
+            extensions = {
+                file_browser = {
+                    grouped = true,
+                },
+            },
         },
         config = function(_, opts)
             require("cozyvim.configs.telescope").setup(opts)
