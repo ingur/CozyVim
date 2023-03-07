@@ -396,6 +396,7 @@ return {
                 "jsonc",
                 "json",
                 "lua",
+                "luap",
                 "markdown",
                 "markdown_inline",
                 "python",
