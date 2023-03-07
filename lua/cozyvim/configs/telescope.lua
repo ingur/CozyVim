@@ -20,14 +20,13 @@ M.defaults = {
             preview_cutoff = 120,
         },
         preview = {
-            filesize_limit = 10,
+            timeout = 200,
             treesitter = {
-                disable = { "html", "csv" }
+                disable = { "html", }
             },
         },
         path_display = { "truncate" },
-        color_devicons = true,
-        set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+        set_env = { COLORTERM = "truecolor" }, -- default = nil,
         mappings = {
             n = { ["q"] = require("telescope.actions").close },
             i = { ["<C-c>"] = require("telescope.actions").close },
