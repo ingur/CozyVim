@@ -2,16 +2,6 @@ local M = {}
 
 M.defaults = {
     defaults = {
-        vimgrep_arguments = {
-            "rg",
-            "-L",
-            "--color=never",
-            "--no-heading",
-            "--with-filename",
-            "--line-number",
-            "--column",
-            "--smart-case",
-        },
         prompt_prefix = "   ",
         selection_caret = "  ",
         entry_prefix = "  ",
@@ -28,6 +18,12 @@ M.defaults = {
             width = 0.87,
             height = 0.80,
             preview_cutoff = 120,
+        },
+        preview = {
+            filesize_limit = 10,
+            treesitter = {
+                disable = { "html", "csv" }
+            },
         },
         path_display = { "truncate" },
         color_devicons = true,

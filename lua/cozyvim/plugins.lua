@@ -172,11 +172,6 @@ return {
             },
         },
         opts = {
-            defaults = {
-                preview = {
-                    filesize_limit = 10,
-                },
-            },
             extensions_list = { "ui-select", "file_browser", "project", "fzf" },
             extensions = {
                 file_browser = {
