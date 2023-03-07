@@ -519,14 +519,14 @@ return {
             },
             sections = {
                 lualine_x = {
-                    { "encoding", separator = " ",
-                        padding = { left = 1, right = 0 } },
-                    { "filetype", padding = { left = 0, right = 1 } },
+                    function()
+                        local current_line = vim.fn.line(".")
+                        local current_column = vim.fn.col(".")
+                        return "Ln " .. current_line .. " Col " .. current_column
+                    end
                 },
                 lualine_y = {
-                    { "progress", separator = " ",
-                        padding = { left = 1, right = 0 } },
-                    { "location", padding = { left = 0, right = 1 } },
+                    { "filetype" },
                 },
                 lualine_z = {
                     function()
