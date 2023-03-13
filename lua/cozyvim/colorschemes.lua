@@ -11,6 +11,7 @@ return {
         config = function()
             vim.opt.background = "dark"
             vim.g.gruvbox_material_better_performance = 1
+            vim.g.gruvbox_material_current_word = "bold"
             vim.cmd("colorscheme " .. cozyvim.colorscheme)
         end,
         enabled = cozyvim.colorscheme == "gruvbox-material",
