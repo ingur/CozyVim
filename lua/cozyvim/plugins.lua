@@ -243,19 +243,16 @@ return {
     },
 
     {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        config = true
+    },
+
+    {
         "echasnovski/mini.bracketed",
         version = false,
         config = function(_, opts)
             require("mini.bracketed").setup(opts)
-        end,
-    },
-
-    {
-        "echasnovski/mini.pairs",
-        version = "*",
-        event = "VeryLazy",
-        config = function(_, opts)
-            require("mini.pairs").setup(opts)
         end,
     },
 
@@ -313,12 +310,12 @@ return {
         end,
         opts = {
             mappings = {
-                add = "gsa", -- Add surrounding in Normal and Visual modes
-                delete = "gsd", -- Delete surrounding
-                find = "gsf", -- Find surrounding (to the right)
-                find_left = "gsF", -- Find surrounding (to the left)
-                highlight = "gsh", -- Highlight surrounding
-                replace = "gsr", -- Replace surrounding
+                add = "gsa",            -- Add surrounding in Normal and Visual modes
+                delete = "gsd",         -- Delete surrounding
+                find = "gsf",           -- Find surrounding (to the right)
+                find_left = "gsF",      -- Find surrounding (to the left)
+                highlight = "gsh",      -- Highlight surrounding
+                replace = "gsr",        -- Replace surrounding
                 update_n_lines = "gsn", -- Update `n_lines`
             },
         },
