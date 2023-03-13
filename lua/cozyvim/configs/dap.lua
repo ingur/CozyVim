@@ -1,26 +1,20 @@
 local mason_dap = require("mason-nvim-dap")
 local dap = require("dap")
 
-vim.fn.sign_define("DapBreakpoint", {
-    text = "",
-    texthl = "DiagnosticSignError",
-    linehl = "",
-    numhl = "",
-})
+local signs = {
+    DapBreakpoint = "DiagnosticSignError",
+    DapBreakpointRejected = "DiagnosticSignError",
+    DapStopped = "DiagnosticSignWarn",
+}
 
-vim.fn.sign_define("DapBreakpointRejected", {
-    text = "",
-    texthl = "DiagnosticSignError",
-    linehl = "",
-    numhl = "",
-})
-
-vim.fn.sign_define("DapStopped", {
-    text = "",
-    texthl = "DiagnosticSignWarn",
-    linehl = "",
-    numhl = "",
-})
+for sign, hl in pairs(signs) do
+    vim.fn.sign_define(sign, {
+        text = cozyvim.icons.dap[sign],
+        texthl = hl,
+        linehl = "",
+        numhl = "",
+    })
+end
 
 mason_dap.setup(cozyvim.dap.opts)
 mason_dap.setup_handlers({})

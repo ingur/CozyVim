@@ -1,5 +1,20 @@
 return {
 
+    -- colorscheme plugins
+
+    {
+        "sainnhe/gruvbox-material",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.opt.background = "dark"
+            vim.g.gruvbox_material_better_performance = 1
+            vim.g.gruvbox_material_current_word = "bold"
+            vim.g.gruvbox_material_transparent_background = 2
+            vim.cmd("colorscheme gruvbox-material")
+        end,
+    },
+
     -- editor plugins
 
     {
@@ -33,9 +48,7 @@ return {
         config = function(_, opts)
             local MiniMisc = require("mini.misc")
             MiniMisc.setup(opts)
-            if cozyvim.setup_auto_root then
-                MiniMisc.setup_auto_root()
-            end
+            MiniMisc.setup_auto_root()
         end,
     },
 
@@ -58,11 +71,6 @@ return {
     },
 
     {
-        "windwp/nvim-spectre",
-        lazy = true,
-    },
-
-    {
         "rmagatti/goto-preview",
         lazy = true,
         opts = {
@@ -71,10 +79,43 @@ return {
     },
 
     {
+        "romainl/vim-cool",
+        event = "BufRead",
+    },
+
+    {
+        "kevinhwang91/nvim-ufo",
+        dependencies = {
+            "kevinhwang91/promise-async",
+        },
+        event = "BufReadPost",
+        opts = {
+            ---@diagnostic disable-next-line: unused-local
+            provider_selector = function(bufnr, filetype, buftype)
+                return { "treesitter", "indent" }
+            end
+        },
+        config = function(_, opts)
+            vim.o.foldcolumn = "0" -- '0' is not bad
+            vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
+            vim.o.foldlevelstart = 99
+            vim.o.foldenable = true
+            require("ufo").setup(opts)
+        end,
+    },
+
+    {
         "folke/todo-comments.nvim",
         cmd = { "TodoTrouble", "TodoTelescope" },
         event = { "BufReadPost", "BufNewFile" },
-        config = true,
+        opts = {
+            highlight = {
+                keyword = "fg",
+            },
+            colors = {
+                info = { "Purple" }
+            },
+        },
     },
 
     {
@@ -82,45 +123,6 @@ return {
         cmd = { "TroubleToggle", "Trouble" },
         opts = {
             auto_open = false,
-            use_diagnostic_signs = true,
-        },
-    },
-
-    {
-        "nvim-neo-tree/neo-tree.nvim",
-        cmd = "Neotree",
-        deactivate = function()
-            vim.cmd([[Neotree close]])
-        end,
-        keys = {
-            {
-                "<leader>e",
-                function()
-                    require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
-                end,
-                desc = "Explorer NeoTree"
-            },
-        },
-        init = function()
-            vim.g.neo_tree_remove_legacy_commands = 1
-            if vim.fn.argc() == 1 then
-                ---@diagnostic disable-next-line: param-type-mismatch
-                local stat = vim.loop.fs_stat(vim.fn.argv(0))
-                if stat and stat.type == "directory" then
-                    require("neo-tree")
-                end
-            end
-        end,
-        opts = {
-            filesystem = {
-                bind_to_cwd = false,
-                follow_current_file = true,
-            },
-            window = {
-                mappings = {
-                    ["<space>"] = "none",
-                },
-            },
         },
     },
 
@@ -136,26 +138,6 @@ return {
                 changedelete = { text = "▎" },
                 untracked = { text = "▎" },
             },
-            on_attach = function(buffer)
-                local gs = package.loaded.gitsigns
-
-                local function map(mode, l, r, desc)
-                    vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
-                end
-
-                map("n", "]h", gs.next_hunk, "Next Hunk")
-                map("n", "[h", gs.prev_hunk, "Prev Hunk")
-                map({ "n", "v" }, "<leader>gss", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-                map({ "n", "v" }, "<leader>gsr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
-                map("n", "<leader>gsS", gs.stage_buffer, "Stage Buffer")
-                map("n", "<leader>gsu", gs.undo_stage_hunk, "Undo Stage Hunk")
-                map("n", "<leader>gsR", gs.reset_buffer, "Reset Buffer")
-                map("n", "<leader>gsp", gs.preview_hunk, "Preview Hunk")
-                map("n", "<leader>gsb", function() gs.blame_line({ full = true }) end, "Blame Line")
-                map("n", "<leader>gsd", gs.diffthis, "Diff This")
-                map("n", "<leader>gsD", function() gs.diffthis("~") end, "Diff This ~")
-                map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
-            end,
         },
     },
 
@@ -184,15 +166,6 @@ return {
         end
     },
 
-    {
-        "akinsho/toggleterm.nvim",
-        version = "*",
-        event = "BufWinEnter",
-        config = function()
-            require("cozyvim.configs.toggleterm")
-        end,
-    },
-
     -- coding plugins
 
     {
@@ -214,12 +187,13 @@ return {
 
     {
         "hrsh7th/nvim-cmp",
-        event = { "InsertEnter" },
+        event = { "InsertEnter", "CmdlineEnter" },
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-cmdline",
             "hrsh7th/cmp-buffer",
             "hrsh7th/nvim-cmp",
-            "onsails/lspkind.nvim", -- vscode-like pictograms
+            "onsails/lspkind.nvim",
             "saadparwaiz1/cmp_luasnip",
             {
                 "zbirenbaum/copilot-cmp",
@@ -249,6 +223,17 @@ return {
     },
 
     {
+        'echasnovski/mini.splitjoin',
+        version = false,
+        opts    = {
+            mappings = { toggle = "gS" },
+        },
+        config  = function(_, opts)
+            require("mini.splitjoin").setup(opts)
+        end,
+    },
+
+    {
         "echasnovski/mini.bracketed",
         version = false,
         config = function(_, opts)
@@ -259,6 +244,18 @@ return {
     {
         "echasnovski/mini.move",
         version = false,
+        opts = {
+            mappings = {
+                left = '<C-h>',
+                right = '<C-l>',
+                down = '<C-j>',
+                up = '<C-k>',
+                line_left = '<C-h>',
+                line_right = '<C-l>',
+                line_down = '<C-j>',
+                line_up = '<C-k>',
+            },
+        },
         config = function(_, opts)
             require("mini.move").setup(opts)
         end,
@@ -335,7 +332,7 @@ return {
         "lukas-reineke/indent-blankline.nvim",
         event = { "BufReadPost", "BufNewFile" },
         opts = {
-            filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy" },
+            filetype_exclude = { "help", "alpha", "neo-tree", "Trouble", "lazy" },
             show_trailing_blankline_indent = false,
             show_current_context = true,
             show_end_of_line = true,
@@ -355,7 +352,6 @@ return {
                 require("copilot").setup()
             end, 100)
         end,
-        enabled = cozyvim.copilot.enabled,
     },
 
     -- treesitter plugins
@@ -366,7 +362,7 @@ return {
         version = false,
         event = { "BufReadPost", "BufNewFile" },
         dependencies = {
-            "mrjones2014/nvim-ts-rainbow",
+            "HiPhish/nvim-ts-rainbow2"
         },
         opts = {
             highlight = {
@@ -380,8 +376,10 @@ return {
                 enable_autocmd = false
             },
             ensure_installed = {
-                -- "gitignore", -- requires tree-sitter cli (cargo)
+                "c",
+                "cpp",
                 "bash",
+                "go",
                 "help",
                 "html",
                 "javascript",
@@ -394,15 +392,12 @@ return {
                 "python",
                 "query",
                 "regex",
+                "rust",
                 "tsx",
                 "typescript",
                 "vim",
                 "yaml",
-                "rust",
                 "zig",
-                "cpp",
-                "go",
-                "c",
             },
             incremental_selection = {
                 enable = true,
@@ -415,10 +410,33 @@ return {
             },
             rainbow = {
                 enable = true,
+                query = {
+                    'rainbow-parens',
+                    html = 'rainbow-tags',
+                    latex = 'rainbow-blocks',
+                },
+                hlgroups = {
+                    "TSRainbowRed",
+                    "TSRainbowOrange",
+                    "TSRainbowYellow",
+                    "TSRainbowGreen",
+                    "TSRainbowCyan",
+                    "TSRainbowBlue",
+                    "TSRainbowViolet",
+                },
             },
         },
         config = function(_, opts)
             require("nvim-treesitter.configs").setup(opts)
+            vim.cmd([[
+                highlight TSRainbowRed guifg=#ea6962 ctermfg=Red
+                highlight TSRainbowOrange guifg=#e78a4e ctermfg=Green
+                highlight TSRainbowYellow guifg=#d8a657 ctermfg=Yellow
+                highlight TSRainbowGreen guifg=#a9b665 ctermfg=Blue
+                highlight TSRainbowCyan guifg=#89b482 ctermfg=Magenta
+                highlight TSRainbowBlue guifg=#7daea3 ctermfg=Cyan
+                highlight TSRainbowViolet guifg=#d3869b ctermfg=White
+            ]])
         end,
     },
 
@@ -450,7 +468,6 @@ return {
             "jay-babu/mason-null-ls.nvim",
         },
         config = function()
-            require("cozyvim.configs.servers")
             require("cozyvim.configs.lsp")
         end,
     },
@@ -502,11 +519,6 @@ return {
     -- ui plugins
 
     {
-        "nvim-tree/nvim-web-devicons",
-        lazy = true,
-    },
-
-    {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
         opts = {
@@ -532,26 +544,6 @@ return {
                     end,
                 },
             },
-            extensions = { "neo-tree" },
-        },
-    },
-
-    {
-        "akinsho/bufferline.nvim",
-        event = "VeryLazy",
-        opts = {
-            options = {
-                always_show_bufferline = false,
-                diagnostics = "nvim_lsp",
-                offsets = {
-                    {
-                        filetype = "neo-tree",
-                        text = "Neo Tree",
-                        highlight = "Directory",
-                        text_align = "left",
-                    },
-                },
-            }
         },
     },
 
@@ -588,9 +580,6 @@ return {
     {
         "folke/noice.nvim",
         event = "VeryLazy",
-        dependencies = {
-            "MunifTanjim/nui.nvim"
-        },
         opts = {
             lsp = {
                 progress = {
@@ -618,6 +607,7 @@ return {
         opts = {
             window = {
                 relative = "editor",
+                blend = 0,
             }
         }
     },
@@ -628,6 +618,17 @@ return {
         config = function()
             require("cozyvim.configs.alpha")
         end,
+    },
+
+
+    {
+        "MunifTanjim/nui.nvim",
+        lazy = true,
+    },
+
+    {
+        "nvim-tree/nvim-web-devicons",
+        lazy = true,
     },
 
     -- util plugins
@@ -649,7 +650,17 @@ return {
         "folke/persistence.nvim",
         event = "BufReadPre",
         opts = {
-            options = { "buffers", "curdir", "tabpages", "winsize", "help" }
+            options = {
+                "buffers",
+                "curdir",
+                "tabpages",
+                "winsize",
+                "help",
+                "blank",
+                "terminal",
+                "folds",
+                "tabpages"
+            },
         },
     },
 

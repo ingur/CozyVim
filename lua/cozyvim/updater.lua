@@ -16,13 +16,12 @@ local function run_job(opts, callback)
     opts.data.stderr = {}
 
     local handle
-    handle = uv.spawn(opts[1], opts,
-        function(code)
-            handle:close()
-            stdout:close()
-            stderr:close()
-            callback(code, opts.data)
-        end)
+    handle = uv.spawn(opts[1], opts, function(code)
+        if handle then handle:close() end
+        stdout:close()
+        stderr:close()
+        callback(code, opts.data)
+    end)
 
     uv.read_start(stdout, function(_, data)
         if data then table.insert(opts.data.stdout, data) end
@@ -41,7 +40,7 @@ local function pull_updates()
         },
         function(code, _)
             if code ~= 0 then
-                vim.notify("Error Updating CozyVim", 'error')
+                vim.notify("Error Updating CozyVim, try pulling manually", 'error')
                 return
             end
             vim.notify('CozyVim has been updated to the latest version!', 'info')
@@ -75,10 +74,6 @@ end
 vim.api.nvim_create_user_command("CozyUpdate", function(_)
     vim.notify("Downloading the latest version of CozyVim...", "info")
     pull_updates()
-end, {
-    bang = true,
-    desc = "Update CozyVim",
-    nargs = 0,
-})
+end, { bang = true, desc = "Update CozyVim", nargs = 0, })
 
 fetch_updates()

@@ -3,6 +3,18 @@ local mason_nls = require("mason-null-ls")
 local lspconfig = require("lspconfig")
 local nls = require("null-ls")
 
+-- diagnostic signs
+for name, icon in pairs(cozyvim.icons.lsp) do
+    vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
+end
+
+vim.diagnostic.config({
+    underline = true,
+    update_in_insert = false,
+    virtual_text = { spacing = 4, prefix = "●" },
+    severity_sort = true,
+})
+
 -- https://github.com/folke/dot/blob/master/config/nvim/lua/config/plugins/null-ls.lua
 local function has_nls_formatter(buf)
     local sources = require("null-ls.sources")
@@ -76,20 +88,17 @@ for server, config in pairs(cozyvim.lsp.servers) do
     end
 end
 
+-- load lsp sources
 mason_lspconfig.setup({ ensure_installed = ensure_installed })
 mason_lspconfig.setup_handlers({ setup })
 
--- load null-ls
-local options = cozyvim.nls
+-- load null-ls sources
+local options = {}
 options.capabilities = capabilities
 options.on_attach = on_attach
-
--- load custom null-ls sources
-local sources = vim.deepcopy(options.sources)
 options.sources = {}
 
-ensure_installed = {}
-for group, list in pairs(sources) do
+for group, list in pairs(cozyvim.nls.sources) do
     for source, config in pairs(list) do
         if type(config) == "table" then
             table.insert(options.sources, nls.builtins[group][source].with(config))

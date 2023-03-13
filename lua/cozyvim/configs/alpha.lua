@@ -11,14 +11,15 @@ dashboard.section.header.val = {
 }
 
 dashboard.section.buttons.val = {
-    dashboard.button("f", " > Find File", "<cmd>Telescope find_files<CR>"),
-    dashboard.button("e", " > New File", "<cmd>ene <BAR> startinsert <CR>"),
-    dashboard.button("r", " > Recent Files", "<cmd>Telescope oldfiles<CR>"),
-    dashboard.button("p", " > Project Browser", "<cmd>Telescope project<CR>"),
+    dashboard.button("f", " > Find File", "<cmd>Telescope find_files<cr>"),
+    dashboard.button("e", " > New File", "<cmd>ene <BAR> startinsert <cr>"),
+    dashboard.button("r", " > Recent Files", "<cmd>Telescope oldfiles<cr>"),
+    dashboard.button("p", " > Project Browser", "<cmd>Telescope project<cr>"),
     dashboard.button("s", " > Restore Last Session", [[<cmd>lua require("persistence").load({ last = true })<cr>]]),
-    dashboard.button("l", "鈴> Manage Plugins", "<cmd>Lazy<CR>"),
-    dashboard.button("x", " > Configuration", "<cmd>lua cozyvim.utils.open_config()<cr>"),
-    dashboard.button("q", " > Quit", "<cmd>qa<CR>"),
+    dashboard.button("l", "鈴> Manage Plugins", "<cmd>Lazy<cr>"),
+    dashboard.button("x", " > Configuration",
+        [[<cmd>lua require('telescope.builtin').find_files({cwd=vim.fn.stdpath("config")})<cr>]]),
+    dashboard.button("q", " > Quit", "<cmd>qa<cr>"),
 }
 
 dashboard.section.footer.opts.hl = "Constant"

@@ -1,14 +1,14 @@
-require("cozyvim.defaults") -- cozyvim default settings
-require("cozyvim.options") -- cozyvim default options
-pcall(require, "custom") -- custom settings/cozyvim overrides
+require("cozyvim.defaults") -- load cozyvim defaults
+require("cozyvim.options")  -- load base neovim opts
 
-require("cozyvim.lazy") -- bootstrap lazy.nvim & load plugins
+pcall(require, "custom")    -- load custom user opts
+require("cozyvim.lazy")     -- load lazy.nvim plugin
 
--- triggered after LazyDone and processing VimEnter autocommands
 vim.api.nvim_create_autocmd("User", {
     pattern = "VeryLazy",
     callback = function()
-        require("cozyvim.mappings")
+        require("cozyvim.autocmds")
+        require("cozyvim.keymaps")
         require("cozyvim.updater")
     end,
 })

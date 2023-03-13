@@ -18,13 +18,33 @@ M.defaults = {
         end,
     },
     mapping = cmp.mapping.preset.insert({
-        ["<C-u>"] = cmp.mapping.scroll_docs( -4),
+        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
         ["<C-d>"] = cmp.mapping.scroll_docs(4),
-        ["<CR>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = cozyvim.cmp.auto_select,
-        }),
         ["<C-e>"] = cmp.mapping.abort(),
+        ["<cr>"] = cmp.mapping(function(fallback)
+            local entry = cmp.get_selected_entry()
+            if entry then
+                if entry.source.name == "copilot" then
+                    cmp.confirm({
+                        behavior = cmp.ConfirmBehavior.Replace,
+                        select = false,
+                    })
+                else
+                    cmp.confirm({ select = false })
+                end
+            else
+                fallback()
+            end
+        end),
+        ["<C-Space>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.close()
+            elseif M.has_words_before() then
+                cmp.complete()
+            else
+                fallback()
+            end
+        end),
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() and M.has_words_before() then
                 cmp.select_next_item()
@@ -34,12 +54,11 @@ M.defaults = {
                 fallback()
             end
         end, { "i", "s" }),
-
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() and M.has_words_before() then
                 cmp.select_prev_item()
-            elseif luasnip.locally_jumpable( -1) then
-                luasnip.jump( -1)
+            elseif luasnip.locally_jumpable(-1) then
+                luasnip.jump(-1)
             else
                 fallback()
             end
@@ -54,6 +73,7 @@ M.defaults = {
     sources = cmp.config.sources({
         { name = "path",     group_index = 1 },
         { name = "nvim_lsp", group_index = 1 },
+        { name = "copilot",  group_index = 1 },
         { name = "buffer",   group_index = 2 },
         { name = "luasnip",  group_index = 3, keyword_length = 3 },
     }),
@@ -61,10 +81,28 @@ M.defaults = {
 
 M.setup = function(options)
     options = vim.tbl_deep_extend("force", M.defaults, options or {})
-    if cozyvim.copilot.enabled and cozyvim.copilot.cmp then
-        table.insert(options.sources, { name = "copilot", group_index = 1 })
-    end
     cmp.setup(options)
+
+    cmp.setup.cmdline('/', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+            { name = 'buffer' }
+        }
+    })
+
+    cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+            { name = 'path' }
+        }, {
+            {
+                name = 'cmdline',
+                option = {
+                    ignore_cmds = { 'Man', '!' }
+                }
+            }
+        })
+    })
 end
 
 return M
