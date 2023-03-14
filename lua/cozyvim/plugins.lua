@@ -261,14 +261,14 @@ return {
         end,
     },
 
-    {
-        "echasnovski/mini.comment",
-        version = "*",
-        event = "VeryLazy",
-        config = function(_, opts)
-            require("mini.comment").setup(opts)
-        end,
-    },
+    -- {
+    --     "echasnovski/mini.comment",
+    --     version = "*",
+    --     event = "VeryLazy",
+    --     config = function(_, opts)
+    --         require("mini.comment").setup(opts)
+    --     end,
+    -- },
 
     {
         "echasnovski/mini.cursorword",
@@ -318,6 +318,14 @@ return {
         },
         config = function(_, opts)
             require("mini.surround").setup(opts)
+        end,
+    },
+
+    {
+        "numToStr/Comment.nvim",
+        event = "VeryLazy",
+        config = function(_, opts)
+            require('Comment').setup(opts)
         end,
     },
 
