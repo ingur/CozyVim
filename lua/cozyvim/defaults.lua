@@ -83,6 +83,9 @@ cozyvim.lsp.servers["lua_ls"] = {
             completion = {
                 callSnippet = "Replace",
             },
+            diagnostics = {
+                globals = { "vim" },
+            },
         },
     },
 }
