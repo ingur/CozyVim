@@ -547,6 +547,29 @@ return {
     },
 
     {
+        "akinsho/bufferline.nvim",
+        event = "VeryLazy",
+        opts = {
+            options = {
+                always_show_bufferline = false,
+                diagnostics = "nvim_lsp",
+                offsets = {
+                    {
+                        filetype = "neo-tree",
+                        text = "Neo Tree",
+                        highlight = "Directory",
+                        text_align = "left",
+                    },
+                },
+                indicator = {
+                    style = "none",
+                },
+                show_buffer_close_icons = false,
+            },
+        },
+    },
+
+    {
         "SmiteshP/nvim-navic",
         config = function()
             vim.g.navic_silence = true
