@@ -223,6 +223,15 @@ return {
     },
 
     {
+        "kylechui/nvim-surround",
+        version = "*",
+        event = "VeryLazy",
+        config = function(_, opts)
+            require("nvim-surround").setup(opts)
+        end
+    },
+
+    {
         'echasnovski/mini.splitjoin',
         version = false,
         opts    = {
@@ -276,39 +285,6 @@ return {
         event = "VeryLazy",
         config = function(_, opts)
             require("mini.ai").setup(opts)
-        end,
-    },
-
-    {
-        "echasnovski/mini.surround",
-        version = "*",
-        keys = function(_, keys)
-            local plugin = require("lazy.core.config").spec.plugins["mini.surround"]
-            local opts = require("lazy.core.plugin").values(plugin, "opts", false)
-            local mappings = {
-                { opts.mappings.add,            desc = "Add surrounding",       mode = { "n", "v" } },
-                { opts.mappings.delete,         desc = "Delete surrounding" },
-                { opts.mappings.find,           desc = "Find right surrounding" },
-                { opts.mappings.find_left,      desc = "Find left surrounding" },
-                { opts.mappings.highlight,      desc = "Highlight surrounding" },
-                { opts.mappings.replace,        desc = "Replace surrounding" },
-                { opts.mappings.update_n_lines, desc = "Update `n-lines`" },
-            }
-            return vim.list_extend(mappings, keys)
-        end,
-        opts = {
-            mappings = {
-                add = "gsa",            -- Add surrounding in Normal and Visual modes
-                delete = "gsd",         -- Delete surrounding
-                find = "gsf",           -- Find surrounding (to the right)
-                find_left = "gsF",      -- Find surrounding (to the left)
-                highlight = "gsh",      -- Highlight surrounding
-                replace = "gsr",        -- Replace surrounding
-                update_n_lines = "gsn", -- Update `n_lines`
-            },
-        },
-        config = function(_, opts)
-            require("mini.surround").setup(opts)
         end,
     },
 
