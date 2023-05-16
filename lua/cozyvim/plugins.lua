@@ -355,7 +355,6 @@ return {
                 "cpp",
                 "bash",
                 "go",
-                "help",
                 "html",
                 "javascript",
                 "jsonc",
@@ -386,6 +385,7 @@ return {
             },
             rainbow = {
                 enable = true,
+                disable = { "zig", },
                 query = {
                     'rainbow-parens',
                     html = 'rainbow-tags',
