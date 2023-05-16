@@ -20,10 +20,15 @@ M.defaults = {
             preview_cutoff = 120,
         },
         preview = {
-            timeout = 200,
-            treesitter = {
-                disable = { "html", }
-            },
+            treesitter = false,
+            timeout = 250,
+            -- truncate for preview
+            filesize_hook = function(filepath, bufnr, opts)
+                local path = require("plenary.path"):new(filepath)
+                local height = vim.api.nvim_win_get_height(opts.winid)
+                local lines = vim.split(path:head(height), "[\r]?\n")
+                vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
+            end,
         },
         path_display = { "truncate" },
         set_env = { COLORTERM = "truecolor" }, -- default = nil,
