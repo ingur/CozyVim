@@ -384,8 +384,7 @@ return {
                 },
             },
             rainbow = {
-                enable = true,
-                disable = { "zig", },
+                enable = false,
                 query = {
                     'rainbow-parens',
                     html = 'rainbow-tags',
