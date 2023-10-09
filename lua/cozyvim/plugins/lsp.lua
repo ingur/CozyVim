@@ -28,9 +28,7 @@ return {
 		},
 		config = function()
 			require("neodev").setup()
-			require("goto-preview").setup({
-
-			})
+			require("goto-preview").setup({})
 			local lspconfig = require("lspconfig")
 
 			-- add diagnostic icons
