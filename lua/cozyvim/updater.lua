@@ -61,13 +61,13 @@ local function fetch_updates()
                 return
             end
 
-            local msg = "A new version of CozyVim is available!" .. (cozyvim.auto_update and "" or " (via :CozyUpdate)")
-            vim.notify(msg, "info")
+            -- local msg = "A new version of CozyVim is available!" .. (cozyvim.auto_update and "" or " (via :CozyUpdate)")
+            -- vim.notify(msg, "info")
 
-            if cozyvim.auto_update then
-                vim.notify("Downloading the latest version of CozyVim...", "info")
-                pull_updates()
-            end
+            -- if cozyvim.auto_update then
+            vim.notify("Downloading the latest version of CozyVim...", "info")
+            pull_updates()
+            -- end
         end
     )
 end

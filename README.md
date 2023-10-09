@@ -7,7 +7,7 @@
   <img src="https://user-images.githubusercontent.com/45173070/221728266-dcaf72fe-8625-4443-a80d-04dc52cce4d2.png" />
 </p>
 
-My personal, modern and easily extendable configuration for nvim. Basically my own take on LunarVim/NvChad/LazyVim (absolute legends).
+My personal, modern and cozy configuration for NeoVim.
 
 ## Features
 
