@@ -1,10 +1,10 @@
 # CozyVim
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/45173070/221726955-6126fdbb-cdac-46ef-834f-c5cc323d9b99.png" />
+  <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/45173070/273734086-771e98dc-0a30-419d-be97-af587ce28ef1.png"/>
 </p>
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/45173070/221728266-dcaf72fe-8625-4443-a80d-04dc52cce4d2.png" />
+  <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/45173070/273735731-daa3c097-53a1-4de4-b8f8-65118ce758a2.png"/>
 </p>
 
 My personal, modern and cozy configuration for NeoVim.
