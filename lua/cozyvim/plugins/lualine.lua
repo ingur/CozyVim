@@ -22,6 +22,7 @@ return {
                 globalstatus = true,
                 section_separators = { left = " ", right = "" },
                 component_separators = { left = "/" },
+                disabled_filetypes = { "alpha" },
             },
             sections = {
                 lualine_a = {
@@ -48,4 +49,3 @@ return {
         }
     end,
 }
-
