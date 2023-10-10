@@ -4,7 +4,7 @@
   <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/45173070/273734086-771e98dc-0a30-419d-be97-af587ce28ef1.png"/>
 </p>
 <p align="center">
-  <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/45173070/273735731-daa3c097-53a1-4de4-b8f8-65118ce758a2.png"/>
+  <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/45173070/273744812-291c6b8a-b7a0-449e-a860-93fd5f52950b.png"/>
 </p>
 
 My personal, modern and cozy configuration for NeoVim.
@@ -12,14 +12,13 @@ My personal, modern and cozy configuration for NeoVim.
 ## Features
 
 - Preconfigured base config for NeoVim
-- Easily extendable and customizable
+- Able to automatically keep itself up to date
 - Very fast lazy plugin loading using [lazy.nvim](https://github.com/folke/lazy.nvim)
-- Multiple Treesitter supported Colorthemes preinstalled
 - Default configs for LSP, linting, formatting, autocompletions, integrated terminals and more
 
 ## Requirements
 
-- Neovim >= 0.8.0
+- Neovim >= 0.9.0
 - `git`, `make`, `pip`, `python`, `npm`, `node`, `cargo`
 - [lazygit](https://github.com/jesseduffield/lazygit) (hightly recommended)
 - a [Nerd Font](https://www.nerdfonts.com/) (highly recommended)
