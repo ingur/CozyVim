@@ -30,6 +30,9 @@ return {
         shade_terminals = false,
         open_mapping = nil,
         persist_mode = false,
+        float_opts = {
+            border = "rounded",
+        },
         size = function(term)
             if term.direction == "horizontal" then
                 return 8
