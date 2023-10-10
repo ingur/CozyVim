@@ -32,6 +32,13 @@ return {
 	},
 
 	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		opts = {},
+	},
+
+	{
 		"numToStr/Comment.nvim", -- comment selections
 		event = "BufReadPost",
 		config = true,
