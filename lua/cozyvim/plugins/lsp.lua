@@ -30,6 +30,7 @@ return {
 			require("neodev").setup()
 			require("goto-preview").setup({})
 			local lspconfig = require("lspconfig")
+			require("lspconfig.ui.windows").default_options.border = "rounded"
 
 			-- add diagnostic icons
 			local icons = { Error = " ", Warn = " ", Hint = "󰌶", Info = " " }
