@@ -1,22 +1,22 @@
 return {
 	{
-		"tpope/vim-sleuth",     -- smarter shiftwidth/expandtab
+		"tpope/vim-sleuth", -- smarter shiftwidth/expandtab
 		event = { "BufReadPost", "BufNewFile" },
 	},
 
 	{
-		"romainl/vim-cool",     -- smarter search highlights
+		"romainl/vim-cool", -- smarter search highlights
 		event = "BufRead",
 	},
 
 	{
-		"karb94/neoscroll.nvim",     -- smooth scrolling
+		"karb94/neoscroll.nvim", -- smooth scrolling
 		keys = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
 		config = true,
 	},
 
 	{
-		"ggandor/leap.nvim",     -- adds fast vim motions
+		"ggandor/leap.nvim", -- adds fast vim motions
 		lazy = false,
 		config = function()
 			require("leap").add_default_mappings(true)
@@ -24,7 +24,7 @@ return {
 	},
 
 	{
-		"nacro90/numb.nvim",     -- peak lines with linenumbers
+		"nacro90/numb.nvim", -- peak lines with linenumbers
 		event = "BufRead",
 		opts = {
 			show_cursorline = false,
@@ -32,7 +32,7 @@ return {
 	},
 
 	{
-		"numToStr/Comment.nvim",     -- comment selections
+		"numToStr/Comment.nvim", -- comment selections
 		event = "BufReadPost",
 		config = true,
 	},
@@ -53,7 +53,7 @@ return {
 	},
 
 	{
-		"kylechui/nvim-surround",     -- surround selections
+		"kylechui/nvim-surround", -- surround selections
 		version = "*",
 		event = "VeryLazy",
 		config = function(_, opts)
@@ -62,7 +62,7 @@ return {
 	},
 
 	{
-		"ggandor/leap.nvim",     -- adds fast vim motions
+		"ggandor/leap.nvim", -- adds fast vim motions
 		lazy = false,
 		config = function()
 			require("leap").add_default_mappings(true)
@@ -70,7 +70,7 @@ return {
 	},
 
 	{
-		"folke/todo-comments.nvim",     -- comment highlights
+		"folke/todo-comments.nvim", -- comment highlights
 		event = { "BufReadPost", "BufNewFile" },
 		cmd = { "TodoTrouble", "TodoTelescope" },
 		keys = {
@@ -104,7 +104,7 @@ return {
 	},
 
 	{
-		"folke/trouble.nvim",     -- list of diagnostics
+		"folke/trouble.nvim", -- list of diagnostics
 		cmd = { "TroubleToggle", "Trouble" },
 		opts = {
 			use_diagnostic_signs = true,
@@ -142,7 +142,7 @@ return {
 	},
 
 	{
-		"lewis6991/gitsigns.nvim",     -- fancy git decorations
+		"lewis6991/gitsigns.nvim", -- fancy git decorations
 		event = { "BufReadPre", "BufNewFile" },
 		opts = {
 			signs = {
@@ -157,7 +157,7 @@ return {
 	},
 
 	{
-		"stevearc/dressing.nvim",     -- better ui elements
+		"stevearc/dressing.nvim", -- better ui elements
 		event = "VeryLazy",
 		opts = {
 			input = {
@@ -169,7 +169,7 @@ return {
 	},
 
 	{
-		"lukas-reineke/indent-blankline.nvim",     -- adds indentation guides
+		"lukas-reineke/indent-blankline.nvim", -- adds indentation guides
 		main = "ibl",
 		event = { "BufReadPost", "BufNewFile" },
 		opts = {
@@ -191,7 +191,7 @@ return {
 	},
 
 	{
-		"folke/persistence.nvim",     -- session management
+		"folke/persistence.nvim", -- session management
 		event = "BufReadPre",
 		keys = {
 			{

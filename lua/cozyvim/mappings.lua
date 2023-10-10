@@ -1,6 +1,6 @@
 local function map(m, lhs, rhs, desc)
-    local opts = { desc = desc }
-    vim.keymap.set(m, lhs, rhs, opts)
+	local opts = { desc = desc }
+	vim.keymap.set(m, lhs, rhs, opts)
 end
 
 map("n", ";", ":", "Command")
@@ -12,9 +12,9 @@ map("n", "<leader>qq", "<cmd>qa<cr>", "Quit all")
 map("n", "<leader>l", "<cmd>Lazy<cr>", "Plugins")
 
 map("n", "<leader>x", function()
-    require('telescope.builtin').find_files({
-        cwd = vim.fn.stdpath("config")
-    })
+	require("telescope.builtin").find_files({
+		cwd = vim.fn.stdpath("config"),
+	})
 end, "Neovim config files")
 
 map("t", "<esc>", "<C-\\><C-n>", "Normal mode")
