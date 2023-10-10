@@ -107,7 +107,7 @@ return {
 						end
 					end),
 					["<Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() and (has_words_before() or #cmp.get_entries() == 1) then
+						if cmp.visible() and has_words_before() then
 							cmp.select_next_item()
 						elseif luasnip.expand_or_locally_jumpable() then
 							luasnip.expand_or_jump()
