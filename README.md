@@ -7,7 +7,8 @@
   <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/45173070/273744812-291c6b8a-b7a0-449e-a860-93fd5f52950b.png"/>
 </p>
 
-My personal, modern and cozy configuration for NeoVim.
+My personal, modern and cozy configuration for NeoVim. The `main` branch is currently optimized for my personal use, but will rework it
+for easy extendability/customizability when I finish reimplementing the final missing features.
 
 ## Features
 
