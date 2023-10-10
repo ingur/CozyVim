@@ -34,9 +34,9 @@ return {
     },
     config = function(_, opts)
         require("noice").setup(opts)
-        -- allows for transparent background (gruvbox), also works on goto-preview etc.
-        vim.cmd("highlight NormalFloat guibg=#282828")
-        vim.cmd("highlight FloatBorder guibg=#282828")
-        vim.cmd("highlight NoicePopupBorder guifg=#928374")
+        -- allows for transparent background (gruvbox), also works on goto-preview, nvim-cmp+documentation, lazy, mason etc.
+        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#282828", blend = 0 })
+        vim.api.nvim_set_hl(0, "FloatBorder", { bg = "#282828" })
+        vim.api.nvim_set_hl(0, "NoicePopupBorder", { fg = "#928374" })
     end
 }

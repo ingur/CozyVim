@@ -48,8 +48,16 @@ return {
 
             require("luasnip.loaders.from_vscode").lazy_load()
 
-            ---@diagnostic disable-next-line: missing-fields
+            ---@diagnostic disable: missing-fields
             cmp.setup({
+                window = {
+                    documentation = cmp.config.window.bordered({
+                        winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+                    }),
+                    completion = cmp.config.window.bordered({
+                        winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+                    })
+                },
                 sources = {
                     { name = "path",     group_index = 1 },
                     { name = "nvim_lsp", group_index = 1 },
@@ -57,7 +65,6 @@ return {
                     { name = "buffer",   group_index = 2 },
                     { name = "luasnip",  group_index = 3, keyword_length = 3 },
                 },
-                ---@diagnostic disable-next-line: missing-fields
                 formatting = {
                     format = lspkind.cmp_format({
                         mode = "symbol_text",
@@ -120,7 +127,6 @@ return {
                 }),
             })
 
-            ---@diagnostic disable-next-line: missing-fields
             cmp.setup.cmdline("/", {
                 mapping = cmp.mapping.preset.cmdline(),
                 sources = {
@@ -128,7 +134,6 @@ return {
                 },
             })
 
-            ---@diagnostic disable-next-line: missing-fields
             cmp.setup.cmdline(":", {
                 mapping = cmp.mapping.preset.cmdline(),
                 sources = cmp.config.sources({
