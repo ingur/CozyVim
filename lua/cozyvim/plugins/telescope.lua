@@ -17,7 +17,7 @@ return {
 				local cwd = vim.fn.getcwd()
 				local results_title = "Results (" .. string.match(cwd, "/([^/]+)/?$") .. ")"
 				opts = vim.tbl_deep_extend("force", { results_title = results_title }, opts or {})
-				if builtin == "files" then
+				if builtin == "find_files" then
 					if vim.loop.fs_stat(cwd .. "/.git") then
 						opts.show_untracked = true
 						builtin = "git_files"
@@ -29,14 +29,14 @@ return {
 			end
 		end
 		return {
-			{ "<leader>ff", telescoped("find_files"), desc = "Find files" },
-			{ "<leader>fr", telescoped("oldfiles"), desc = "Find recent files" },
-			{ "<leader>fw", telescoped("grep_string"), desc = "Grep string" },
+			{ "<leader>ff", telescoped("find_files"),          desc = "Find files" },
+			{ "<leader>fr", telescoped("oldfiles"),            desc = "Find recent files" },
+			{ "<leader>fw", telescoped("grep_string"),         desc = "Grep string" },
 			{ "<leader>fb", "<cmd>Telescope file_browser<cr>", desc = "File browser" },
-			{ "<leader>fp", "<cmd>Telescope project<cr>", desc = "Projects" },
-			{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help_tags" },
-			{ "<leader>fc", "<cmd>Telescope resume<cr>", desc = "Continue" },
-			{ "<leader>/", telescoped("live_grep"), desc = "Live grep" },
+			{ "<leader>fp", "<cmd>Telescope project<cr>",      desc = "Projects" },
+			{ "<leader>fh", "<cmd>Telescope help_tags<cr>",    desc = "Help_tags" },
+			{ "<leader>fc", "<cmd>Telescope resume<cr>",       desc = "Continue" },
+			{ "<leader>/",  telescoped("live_grep"),           desc = "Live grep" },
 		}
 	end,
 	opts = function()
@@ -88,7 +88,7 @@ return {
 						["<C-k>"] = require("telescope.actions").move_selection_previous,
 						["<C-j>"] = require("telescope.actions").move_selection_next,
 						["<C-q>"] = require("telescope.actions").send_selected_to_qflist
-							+ require("telescope.actions").open_qflist,
+								+ require("telescope.actions").open_qflist,
 					},
 				},
 			},

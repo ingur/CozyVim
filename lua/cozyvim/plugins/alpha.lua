@@ -18,7 +18,7 @@ return {
 		}
 
 		dashboard.section.buttons.val = {
-			dashboard.button("f", "󰈞  Find File", "<cmd>Telescope find_files<cr>"),
+			dashboard.button("f", "󰈞  Find File", "<cmd>Telescope file_browser<cr>"),
 			dashboard.button("e", "  New File", "<cmd>ene <BAR> startinsert <cr>"),
 			dashboard.button("r", "  Recent Files", "<cmd>Telescope oldfiles<cr>"),
 			dashboard.button("p", "  Project Browser", "<cmd>Telescope project<cr>"),
