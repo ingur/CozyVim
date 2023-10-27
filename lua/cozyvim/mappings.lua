@@ -1,5 +1,5 @@
 local function map(m, lhs, rhs, desc)
-	local opts = { desc = desc }
+	local opts = type(desc) == "table" and desc or { desc = desc }
 	vim.keymap.set(m, lhs, rhs, opts)
 end
 
@@ -16,6 +16,9 @@ map("n", "<leader>x", function()
 		cwd = vim.fn.stdpath("config"),
 	})
 end, "Neovim config files")
+
+map("n", "<leader>tm", ":setlocal <C-R>=&conceallevel ? 'conceallevel=0' : 'conceallevel=2'<cr><cr>",
+	{ desc = "Toggle markdown conceal", silent = true })
 
 map("t", "<esc>", "<C-\\><C-n>", "Normal mode")
 map("t", "<C-j>", "<C-\\><C-n><C-w>j", "Move to left window")
