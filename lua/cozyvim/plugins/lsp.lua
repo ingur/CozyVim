@@ -103,7 +103,7 @@ return {
 			}
 
 			local default_handler = function(server)
-				local config = configs[server]
+				local config = configs[server] or {}
 				config.on_attach = on_attach
 				config.capabilities = capabilities
 				lspconfig[server].setup(config)
