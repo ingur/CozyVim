@@ -28,7 +28,7 @@ return {
 			},
 		})
 
-		require("mini.misc").setup_auto_root()
+		require("mini.misc").setup_auto_root({ ".git", "Makefile", ".root" })
 		require("mini.misc").setup_restore_cursor()
 
 		lazyload("mini.cursorword", {}) -- highlight word on cursor
