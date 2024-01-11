@@ -48,6 +48,14 @@ return {
 
 			require("luasnip.loaders.from_vscode").lazy_load()
 
+			local max_width = 40
+			local base_format = lspkind.cmp_format({
+				mode = "symbol_text",
+				symbol_map = { copilot = "" },
+				ellipsis_char = "...",
+				max_width = max_width,
+			})
+
 			---@diagnostic disable: missing-fields
 			cmp.setup({
 				window = {
@@ -59,19 +67,22 @@ return {
 					}),
 				},
 				sources = {
-					{ name = "path", group_index = 1 },
+					{ name = "path",     group_index = 1 },
 					{ name = "nvim_lsp", group_index = 1 },
-					{ name = "copilot", group_index = 1 },
-					{ name = "buffer", group_index = 2 },
-					{ name = "luasnip", group_index = 3, keyword_length = 3 },
+					{ name = "copilot",  group_index = 1 },
+					{ name = "buffer",   group_index = 2 },
+					{ name = "luasnip",  group_index = 3, keyword_length = 3 },
 				},
 				formatting = {
-					format = lspkind.cmp_format({
-						mode = "symbol_text",
-						symbol_map = { Copilot = "" },
-						ellipsis_char = "...",
-						max_width = 50,
-					}),
+					format = function(entry, vim_item)
+						vim_item = base_format(entry, vim_item)
+
+						if vim.fn.strchars(vim_item.menu) > max_width then
+							vim_item.menu = vim.fn.strcharpart(vim_item.menu, 0, max_width) .. "..."
+						end
+
+						return vim_item
+					end
 				},
 				snippet = {
 					expand = function(args)
