@@ -48,12 +48,11 @@ return {
 
 			require("luasnip.loaders.from_vscode").lazy_load()
 
-			local max_width = 40
 			local base_format = lspkind.cmp_format({
 				mode = "symbol_text",
 				symbol_map = { copilot = "" },
 				ellipsis_char = "...",
-				max_width = max_width,
+				max_width = 40,
 			})
 
 			---@diagnostic disable: missing-fields
@@ -77,8 +76,21 @@ return {
 					format = function(entry, vim_item)
 						vim_item = base_format(entry, vim_item)
 
-						if vim.fn.strchars(vim_item.menu) > max_width then
-							vim_item.menu = vim.fn.strcharpart(vim_item.menu, 0, max_width) .. "..."
+						local window_width = vim.api.nvim_win_get_width(0)
+
+						local max_abbr_width = math.max(25, math.floor(window_width / 4))
+						local max_menu_width = math.max(20, math.floor(window_width / 5))
+						local abbr_width = vim.fn.strchars(vim_item.abbr)
+						local menu_width = vim.fn.strchars(vim_item.menu)
+
+						if abbr_width > max_abbr_width then
+							vim_item.abbr = vim.fn.strcharpart(vim_item.abbr, 0, max_abbr_width - 3) .. "..."
+						end
+
+						if vim.api.nvim_win_get_width(0) <= 80 then
+							vim_item.menu = ""
+						elseif menu_width > max_menu_width then
+							vim_item.menu = vim.fn.strcharpart(vim_item.menu, 0, max_menu_width - 3) .. "..."
 						end
 
 						return vim_item
