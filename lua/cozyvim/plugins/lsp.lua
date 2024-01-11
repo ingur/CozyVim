@@ -70,17 +70,37 @@ return {
 				map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Previous diagnostic")
 				map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next diagnostic")
 
-				map("n", "gpd", "<cmd>lua require('goto-preview').goto_preview_definition()<cr>",
-					"Goto preview definition")
-				map("n", "gpt", "<cmd>lua require('goto-preview').goto_preview_type_definition()<cr>",
-					"Goto preview type definition")
-				map("n", "gpi", "<cmd>lua require('goto-preview').goto_preview_implementation()<cr>",
-					"Goto preview implementation")
-				map("n", "gpD", "<cmd>lua require('goto-preview').goto_preview_declaration()<cr>",
-					"Goto preview declaration")
+				map(
+					"n",
+					"gpd",
+					"<cmd>lua require('goto-preview').goto_preview_definition()<cr>",
+					"Goto preview definition"
+				)
+				map(
+					"n",
+					"gpt",
+					"<cmd>lua require('goto-preview').goto_preview_type_definition()<cr>",
+					"Goto preview type definition"
+				)
+				map(
+					"n",
+					"gpi",
+					"<cmd>lua require('goto-preview').goto_preview_implementation()<cr>",
+					"Goto preview implementation"
+				)
+				map(
+					"n",
+					"gpD",
+					"<cmd>lua require('goto-preview').goto_preview_declaration()<cr>",
+					"Goto preview declaration"
+				)
 				map("n", "gP", "<cmd>lua require('goto-preview').close_all_win()<cr>", "Goto preview close windows")
-				map("n", "gpr", "<cmd>lua require('goto-preview').goto_preview_references()<cr>",
-					"Goto preview references")
+				map(
+					"n",
+					"gpr",
+					"<cmd>lua require('goto-preview').goto_preview_references()<cr>",
+					"Goto preview references"
+				)
 			end
 
 			local configs = {
@@ -91,6 +111,9 @@ return {
 				["pyright"] = {},
 				["rust_analyzer"] = {},
 				["tsserver"] = {},
+				["clangd"] = {
+					cmd = { "clangd", "--offset-encoding=utf-16" },
+				},
 				["lua_ls"] = {
 					settings = {
 						Lua = {
@@ -99,7 +122,7 @@ return {
 							telemetry = { enable = false },
 						},
 					},
-				}
+				},
 			}
 
 			local default_handler = function(server)
@@ -109,11 +132,10 @@ return {
 				lspconfig[server].setup(config)
 			end
 
-
 			require("mason-lspconfig").setup({
 				ensure_installed = vim.tbl_keys(configs),
-				handlers = { default_handler }
+				handlers = { default_handler },
 			})
 		end,
-	}
+	},
 }
