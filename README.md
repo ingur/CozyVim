@@ -20,7 +20,7 @@ for easy extendability/customizability when I finish reimplementing the final mi
 ## Requirements
 
 - Neovim >= 0.9.0
-- `git`, `make`, `pip`, `python`, `npm`, `node`, `cargo`
+- `git`, `make`, `pip`, `python`, `npm`, `node`, `cargo`, `sshfs (optional)`
 - [lazygit](https://github.com/jesseduffield/lazygit) (hightly recommended)
 - a [Nerd Font](https://www.nerdfonts.com/) (highly recommended)
 - [ripgrep](https://github.com/BurntSushi/ripgrep) and [fd](https://github.com/sharkdp/fd) for telescope (recommended)
