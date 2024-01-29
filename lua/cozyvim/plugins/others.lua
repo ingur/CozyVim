@@ -226,4 +226,17 @@ return {
 		},
 		opts = { options = { "buffers", "curdir", "tabpages", "winsize", "help", "globals" } },
 	},
+
+	{
+		"nosduco/remote-sshfs.nvim",
+		lazy = false,
+		opts = {
+			ui = {
+				confirm = {
+					connect = false,
+				},
+			},
+		},
+	},
+
 }

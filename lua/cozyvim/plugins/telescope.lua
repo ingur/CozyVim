@@ -92,7 +92,7 @@ return {
 					},
 				},
 			},
-			extensions_list = { "file_browser", "project", "fzf" },
+			extensions_list = { "file_browser", "project", "fzf", "remote-sshfs" },
 			extensions = {
 				file_browser = {
 					grouped = true,
