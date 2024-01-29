@@ -62,7 +62,8 @@ return {
 				map("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", "List references")
 				map("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", "Open signature help")
 				map("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename symbol")
-				map({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", "Format buffer (async)")
+				map({ "n", "x" }, "<F3>", "<cmd>lua require('conform').format({async = true, lsp_fallback = true})<cr>",
+					"Format buffer (async)")
 				map({ "n", "v" }, "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code action")
 				map("x", "<F4>", "<cmd>lua vim.lsp.buf.range_code_action()<cr>", "Code action")
 
